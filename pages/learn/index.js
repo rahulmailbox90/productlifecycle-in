@@ -21,7 +21,7 @@ export default function Learn() {
         <div className="bg-white p-4 rounded shadow-sm">
           <h3 className="font-semibold">Interview prep</h3>
           <p className="text-sm mt-2">Case-style questions derived from demos.</p>
-  
+          </div>
       {/* Product Management Section */}
       <section className="mt-12 px-4 py-8 bg-gray-50 rounded-lg shadow">
         <h2 className="text-2xl font-bold mb-4">📊 Stages of Product Management</h2>
@@ -61,8 +61,8 @@ export default function Learn() {
           </a>
         </div>
       </section>
+      {/* Stage-wise Explanation End*/}
 
-        </div>
       </div>
     </Layout>
   )
