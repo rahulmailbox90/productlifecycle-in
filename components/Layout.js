@@ -7,7 +7,6 @@ const NAV_ITEMS = [
   { href: '/docs', label: 'Docs' },
   { href: '/learn', label: 'Learn' },
   { href: '/learn/foundations', label: 'Foundations' },
-  { href: '/learn/jargons', label: 'Jargons' },
   { href: '/frameworks', label: 'Frameworks' },
   { href: '/resources', label: 'Resources' },
   { href: '/case-studies', label: 'Case Studies' },
