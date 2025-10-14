@@ -6,6 +6,9 @@ export default function Kano() {
       <section className="prose">
         <h1>Kano Model</h1>
         <p>Classify features into Basic, Performance and Delight categories to guide product investments and prioritize features that increase satisfaction.</p>
+
+        <h2>When to use</h2>
+        <p>When you want to understand feature impact on user satisfaction and prioritize for delight vs baseline functionality.</p>
       </section>
     </Layout>
   )

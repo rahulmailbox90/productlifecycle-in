@@ -6,6 +6,10 @@ export default function Rice() {
       <section className="prose">
         <h1>RICE</h1>
         <p><strong>Reach × Impact × Confidence / Effort</strong> — scoring model to prioritize initiatives.</p>
+
+        <h2>When to use</h2>
+        <p>When you have multiple initiatives and measurable rough estimates for reach, impact and effort.</p>
+
         <h2>Example</h2>
         <pre>Reach: 1000 users
 Impact: 3 (medium)
@@ -13,6 +17,11 @@ Confidence: 0.8
 Effort: 5 person-weeks
 
 Score = (1000 * 3 * 0.8) / 5 = 480</pre>
+
+        <h2>Template</h2>
+        <p>
+          <a href="/downloads/rice-template.md" className="text-sky-600 hover:underline">Download RICE template</a>
+        </p>
       </section>
     </Layout>
   )

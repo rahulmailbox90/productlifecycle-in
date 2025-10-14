@@ -78,11 +78,24 @@ export default function Frameworks() {
         <h1 className="text-2xl font-bold mb-4">Frameworks</h1>
         <p className="text-slate-600 mb-6">Common frameworks used in product management for structured thinking, prioritization and decision-making.</p>
 
+        <nav className="mb-6">
+          <h2 className="font-semibold">Quick links</h2>
+          <ul className="flex flex-wrap gap-3 mt-2">
+            {frameworks.map((f) => (
+              <li key={`toc-${f.slug}`}>
+                <a href={`#${f.slug}`} className="text-sky-600 hover:underline">{f.title}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {frameworks.map((f) => (
-            <FrameworkCard key={f.slug} slug={f.slug} title={f.title} example={f.example}>
-              {f.desc}
-            </FrameworkCard>
+            <div id={f.slug} key={f.slug}>
+              <FrameworkCard slug={f.slug} title={f.title} example={f.example}>
+                {f.desc}
+              </FrameworkCard>
+            </div>
           ))}
         </div>
       </section>
