@@ -18,6 +18,69 @@ export default function Home() {
       </section>
 
       <section>
+        {/* Main sections accordion */}
+        <section className="mb-6">
+          <h2 className="text-2xl font-semibold mb-4">Main Sections</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <details className="bg-white p-4 rounded shadow-sm">
+              <summary className="font-semibold cursor-pointer">Learn</summary>
+              <ul className="mt-3 space-y-1 text-sm">
+                <li><Link href="/learn"><a className="hover:underline">Overview</a></Link></li>
+                <li><Link href="/learn/foundations"><a className="hover:underline">Foundations</a></Link></li>
+                <li><Link href="/learn/jargons"><a className="hover:underline">Jargons</a></Link></li>
+                <li><Link href="/learn/frameworks"><a className="hover:underline">Frameworks</a></Link></li>
+                <li><Link href="/learn/skills"><a className="hover:underline">Skills</a></Link></li>
+                <li><Link href="/learn/strategy"><a className="hover:underline">Strategy</a></Link></li>
+                <li><Link href="/learn/development"><a className="hover:underline">Development</a></Link></li>
+                <li><Link href="/learn/growth"><a className="hover:underline">Growth</a></Link></li>
+              </ul>
+            </details>
+
+            <details className="bg-white p-4 rounded shadow-sm">
+              <summary className="font-semibold cursor-pointer">Frameworks</summary>
+              <ul className="mt-3 space-y-1 text-sm">
+                <li><Link href="/frameworks"><a className="hover:underline">All Frameworks</a></Link></li>
+              </ul>
+            </details>
+
+            <details className="bg-white p-4 rounded shadow-sm">
+              <summary className="font-semibold cursor-pointer">Resources</summary>
+              <ul className="mt-3 space-y-1 text-sm">
+                <li><Link href="/resources"><a className="hover:underline">Overview</a></Link></li>
+                <li><Link href="/resources/templates"><a className="hover:underline">Templates</a></Link></li>
+                <li><Link href="/resources/tools"><a className="hover:underline">Tools</a></Link></li>
+              </ul>
+            </details>
+          
+            <details className="bg-white p-4 rounded shadow-sm">
+              <summary className="font-semibold cursor-pointer">Case Studies</summary>
+              <ul className="mt-3 space-y-1 text-sm">
+                <li><Link href="/case-studies"><a className="hover:underline">All Case Studies</a></Link></li>
+              </ul>
+            </details>
+
+            <details className="bg-white p-4 rounded shadow-sm">
+              <summary className="font-semibold cursor-pointer">Career</summary>
+              <ul className="mt-3 space-y-1 text-sm">
+                <li><Link href="/career"><a className="hover:underline">Overview</a></Link></li>
+                <li><Link href="/career/beginner"><a className="hover:underline">Beginner</a></Link></li>
+                <li><Link href="/career/intermediate"><a className="hover:underline">Intermediate</a></Link></li>
+                <li><Link href="/career/advanced"><a className="hover:underline">Advanced</a></Link></li>
+              </ul>
+            </details>
+
+            <details className="bg-white p-4 rounded shadow-sm">
+              <summary className="font-semibold cursor-pointer">Other</summary>
+              <ul className="mt-3 space-y-1 text-sm">
+                <li><Link href="/about"><a className="hover:underline">About</a></Link></li>
+                <li><Link href="/contact"><a className="hover:underline">Contact</a></Link></li>
+                <li><Link href="/products"><a className="hover:underline">Products</a></Link></li>
+                <li><Link href="/docs"><a className="hover:underline">Docs</a></Link></li>
+              </ul>
+            </details>
+          </div>
+        </section>
+
         <h2 className="text-2xl font-semibold mb-4">Featured case studies</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {products.map(p => <ProductCard key={p.slug} product={p} />)}
