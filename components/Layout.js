@@ -56,7 +56,13 @@ export default function Layout({ children }) {
         { href: '/learn/growth', label: 'Growth' }
       ]
     },
-    { key: 'frameworks', label: 'Frameworks', items: [{ href: '/frameworks', label: 'All Frameworks' }] },
+    { key: 'frameworks', label: 'Frameworks', items: [
+      { href: '/frameworks', label: 'All Frameworks' },
+      { href: '/frameworks/rice', label: 'RICE' },
+      { href: '/frameworks/moscow', label: 'MoSCoW' },
+      { href: '/frameworks/kano', label: 'Kano Model' },
+      { href: '/frameworks/ice', label: 'ICE' }
+    ] },
     { key: 'resources', label: 'Resources', items: [{ href: '/resources', label: 'Overview' }, { href: '/resources/templates', label: 'Templates' }, { href: '/resources/tools', label: 'Tools' }] },
     { key: 'case-studies', label: 'Case Studies', items: [{ href: '/case-studies', label: 'All Case Studies' }] },
     { key: 'career', label: 'Career', items: [{ href: '/career', label: 'Overview' }, { href: '/career/beginner', label: 'Beginner' }, { href: '/career/intermediate', label: 'Intermediate' }, { href: '/career/advanced', label: 'Advanced' }] },
