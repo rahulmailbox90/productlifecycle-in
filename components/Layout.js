@@ -33,6 +33,7 @@ export default function Layout({ children }) {
   const [openSections, setOpenSections] = useState({})
   const headerRef = useRef(null)
   const buttonsRef = useRef([])
+  const submenuRefs = useRef({})
 
   useEffect(() => {
     // close menu when route changes
@@ -86,6 +87,46 @@ export default function Layout({ children }) {
           e.preventDefault()
           const key = buttonsRef.current[idx]?.dataset?.key
           if (key) toggleSection(key)
+        }
+        // If the section is open and the user presses ArrowDown, move into submenu
+        const key = buttonsRef.current[idx]?.dataset?.key
+        if ((e.key === 'ArrowDown' || e.key === 'ArrowRight') && key && openSections[key]) {
+          const items = submenuRefs.current[key] || []
+          if (items[0]) {
+            e.preventDefault()
+            items[0].focus()
+          }
+        }
+      }
+
+      // If focus is inside a submenu, allow up/down/home/end navigation
+      const subActive = Object.keys(submenuRefs.current).find((k) => (submenuRefs.current[k] || []).includes(document.activeElement))
+      if (subActive) {
+        const items = submenuRefs.current[subActive]
+        const pos = items.findIndex((el) => el === document.activeElement)
+        if (e.key === 'ArrowDown') {
+          e.preventDefault()
+          const next = items[(pos + 1) % items.length]
+          if (next) next.focus()
+        }
+        if (e.key === 'ArrowUp') {
+          e.preventDefault()
+          const prev = items[(pos - 1 + items.length) % items.length]
+          if (prev) prev.focus()
+        }
+        if (e.key === 'Home') {
+          e.preventDefault()
+          if (items[0]) items[0].focus()
+        }
+        if (e.key === 'End') {
+          e.preventDefault()
+          if (items[items.length - 1]) items[items.length - 1].focus()
+        }
+        if (e.key === 'Escape' || e.key === 'Esc') {
+          // Close submenu and focus the parent button
+          setOpenSections({})
+          const btnIdx = buttonsRef.current.findIndex((b) => b?.dataset?.key === subActive)
+          if (buttonsRef.current[btnIdx]) buttonsRef.current[btnIdx].focus()
         }
       }
     }
@@ -162,10 +203,18 @@ export default function Layout({ children }) {
                     aria-label={`${section.label} submenu`}
                   >
                     <ul className="p-3 space-y-1">
-                      {section.items.map((item) => (
+                      {section.items.map((item, j) => (
                         <li key={item.href}>
                           <Link href={item.href}>
-                            <a className={`block px-2 py-1 rounded ${isActive(item.href) ? 'bg-slate-100 font-semibold' : 'hover:bg-slate-50'}`} aria-current={isActive(item.href) ? 'page' : undefined}>
+                            <a
+                              ref={(el) => {
+                                submenuRefs.current = submenuRefs.current || {}
+                                submenuRefs.current[section.key] = submenuRefs.current[section.key] || []
+                                submenuRefs.current[section.key][j] = el
+                              }}
+                              className={`block px-2 py-1 rounded ${isActive(item.href) ? 'bg-slate-100 font-semibold' : 'hover:bg-slate-50'}`}
+                              aria-current={isActive(item.href) ? 'page' : undefined}
+                            >
                               {item.label}
                             </a>
                           </Link>
@@ -213,10 +262,18 @@ export default function Layout({ children }) {
 
                   <div id={`section-${section.key}`} className={`${openSections[section.key] ? 'block' : 'hidden'} mt-2 transition-all duration-200`}> 
                     <ul className="space-y-1">
-                      {section.items.map((item) => (
+                      {section.items.map((item, j) => (
                         <li key={item.href}>
                           <Link href={item.href}>
-                            <a className={`block px-3 py-2 rounded ${isActive(item.href) ? 'bg-slate-100 font-semibold' : 'hover:bg-slate-50'}`} aria-current={isActive(item.href) ? 'page' : undefined}>
+                            <a
+                              ref={(el) => {
+                                submenuRefs.current = submenuRefs.current || {}
+                                submenuRefs.current[section.key] = submenuRefs.current[section.key] || []
+                                submenuRefs.current[section.key][j] = el
+                              }}
+                              className={`block px-3 py-2 rounded ${isActive(item.href) ? 'bg-slate-100 font-semibold' : 'hover:bg-slate-50'}`}
+                              aria-current={isActive(item.href) ? 'page' : undefined}
+                            >
                               {item.label}
                             </a>
                           </Link>
