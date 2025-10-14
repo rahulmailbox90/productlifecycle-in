@@ -38,7 +38,12 @@ export default function Layout({ children }) {
   }, [router.pathname])
 
   const toggleSection = (key) => {
-    setOpenSections((s) => ({ ...s, [key]: !s[key] }))
+    setOpenSections((s) => {
+      // if the clicked section is already open, close it
+      if (s[key]) return {}
+      // otherwise open only the clicked section and close others
+      return { [key]: true }
+    })
   }
 
   const MENU = [
