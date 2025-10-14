@@ -98,25 +98,33 @@ export default function Frameworks() {
         <h1 className="text-2xl font-bold mb-4">Frameworks</h1>
         <p className="text-slate-600 mb-6">Common frameworks used in product management for structured thinking, prioritization and decision-making.</p>
 
-        <nav className="mb-6">
-          <h2 className="font-semibold">Quick links</h2>
-          <ul className="flex flex-wrap gap-3 mt-2">
-            {frameworks.map((f) => (
-              <li key={`toc-${f.slug}`}>
-                <a href={`#${f.slug}`} className={`text-sky-600 hover:underline ${active === f.slug ? 'font-bold underline decoration-sky-300' : ''}`}>{f.title}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {frameworks.map((f) => (
-            <div id={f.slug} key={f.slug}>
-              <FrameworkCard slug={f.slug} title={f.title} example={f.example}>
-                {f.desc}
-              </FrameworkCard>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {/* Sidebar TOC - sticky on medium+ screens */}
+          <aside className="md:col-span-1">
+            <div className="mb-4 md:sticky md:top-24 md:self-start">
+              <h2 className="font-semibold">Quick links</h2>
+              <ul className="mt-3 space-y-2">
+                {frameworks.map((f) => (
+                  <li key={`toc-${f.slug}`}>
+                    <a href={`#${f.slug}`} className={`block text-sky-600 hover:underline ${active === f.slug ? 'font-bold underline decoration-sky-300' : ''}`}>{f.title}</a>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
+          </aside>
+
+          {/* Main content - cards */}
+          <div className="md:col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {frameworks.map((f) => (
+                <div id={f.slug} key={f.slug}>
+                  <FrameworkCard slug={f.slug} title={f.title} example={f.example}>
+                    {f.desc}
+                  </FrameworkCard>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </Layout>
