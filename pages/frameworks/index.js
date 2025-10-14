@@ -1,5 +1,6 @@
 import Layout from '../../components/Layout'
 import FrameworkCard from '../../components/FrameworkCard'
+import { useEffect, useState } from 'react'
 
 const frameworks = [
   {
@@ -72,6 +73,25 @@ const frameworks = [
 ]
 
 export default function Frameworks() {
+  const [active, setActive] = useState(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const sections = Array.from(document.querySelectorAll('[id]'))
+      .filter((el) => el.id && el.id !== 'undefined')
+      .map((el) => ({ id: el.id, top: el.getBoundingClientRect().top }))
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id)
+        }
+      })
+    }, { root: null, rootMargin: '-40% 0px -40% 0px', threshold: 0 })
+
+    document.querySelectorAll('[id]').forEach((el) => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
   return (
     <Layout>
       <section className="mb-8">
@@ -83,7 +103,7 @@ export default function Frameworks() {
           <ul className="flex flex-wrap gap-3 mt-2">
             {frameworks.map((f) => (
               <li key={`toc-${f.slug}`}>
-                <a href={`#${f.slug}`} className="text-sky-600 hover:underline">{f.title}</a>
+                <a href={`#${f.slug}`} className={`text-sky-600 hover:underline ${active === f.slug ? 'font-bold underline decoration-sky-300' : ''}`}>{f.title}</a>
               </li>
             ))}
           </ul>

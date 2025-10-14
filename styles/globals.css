@@ -6,3 +6,8 @@
 body {
   @apply bg-slate-50 text-slate-800;
 }
+
+/* Smooth scrolling for in-page anchors */
+html {
+  scroll-behavior: smooth;
+}
