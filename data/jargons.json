@@ -1,1 +1,26 @@
-[]
+[
+	{
+		"term": "A/B Test",
+		"definition": "An A/B test aims to compare the performance of two items or variations against one another. In product management, A/B tests are often used to identify the best-performing option."
+	},
+	{
+		"term": "Acceptance Test",
+		"definition": "What is an acceptance test? Learn more about acceptance testing and other agile practices and terminology in our agile glossary."
+	},
+	{
+		"term": "Affinity Diagram",
+		"definition": "An affinity diagram helps teams visualize and review large amounts of information by grouping items into categories. This post discusses why affinity diagrams are useful and will walk you through how to build your own."
+	},
+	{
+		"term": "Agile Framework",
+		"definition": "An agile framework is one of many documented software-development approaches based on the agile philosophy articulated in the Agile Manifesto."
+	},
+	{
+		"term": "Agile Product Owner",
+		"definition": "What is an Agile Product Owner? In an agile organization, the product owner is responsible for prioritizing and overseeing..."
+	},
+	{
+		"term": "Agile Values",
+		"definition": "Agile Values refers to the set of 4 values outlined by the Agile Alliance in The Agile Manifesto. This set of values encourages putting people before processes, getting software out the door fast, collaborating with customers, and adjusting plans as needed."
+	}
+]
