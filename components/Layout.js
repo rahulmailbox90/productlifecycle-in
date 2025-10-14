@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 const NAV_ITEMS = [
@@ -31,6 +31,8 @@ export default function Layout({ children }) {
 
   const [menuOpen, setMenuOpen] = useState(false)
   const [openSections, setOpenSections] = useState({})
+  const headerRef = useRef(null)
+  const buttonsRef = useRef([])
 
   useEffect(() => {
     // close menu when route changes
@@ -45,6 +47,58 @@ export default function Layout({ children }) {
       return { [key]: true }
     })
   }
+
+  // Close menus when clicking outside the header, and handle keyboard navigation
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (!headerRef.current) return
+      if (!headerRef.current.contains(e.target)) {
+        setOpenSections({})
+        setMenuOpen(false)
+      }
+    }
+
+    const onKey = (e) => {
+      // Close all menus on Escape
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        setOpenSections({})
+        setMenuOpen(false)
+        // move focus back to first menu button if any
+        if (buttonsRef.current && buttonsRef.current[0]) buttonsRef.current[0].focus()
+      }
+
+      // Arrow navigation between top-level buttons when focused
+      const active = document.activeElement
+      const idx = buttonsRef.current.findIndex((b) => b === active)
+      if (idx !== -1) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault()
+          const next = buttonsRef.current[(idx + 1) % buttonsRef.current.length]
+          if (next) next.focus()
+        }
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault()
+          const prev = buttonsRef.current[(idx - 1 + buttonsRef.current.length) % buttonsRef.current.length]
+          if (prev) prev.focus()
+        }
+        if (e.key === 'Enter' || e.key === ' ') {
+          // Space/Enter toggles open state
+          e.preventDefault()
+          const key = buttonsRef.current[idx]?.dataset?.key
+          if (key) toggleSection(key)
+        }
+      }
+    }
+
+    document.addEventListener('mousedown', onDocClick)
+    document.addEventListener('touchstart', onDocClick)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDocClick)
+      document.removeEventListener('touchstart', onDocClick)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [])
 
   const MENU = [
     {
@@ -77,7 +131,7 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-white shadow sticky top-0 z-40">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+  <div ref={headerRef} className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/">
               <a className="text-xl font-semibold">productlifecycle.in</a>
@@ -87,9 +141,11 @@ export default function Layout({ children }) {
           <div className="flex items-center gap-3">
             {/* Desktop: show top-level section buttons that toggle dropdowns */}
             <div className="hidden md:flex items-center gap-2">
-              {MENU.map((section) => (
+              {MENU.map((section, idx) => (
                 <div key={section.key} className="relative">
                   <button
+                    ref={(el) => (buttonsRef.current[idx] = el)}
+                    data-key={section.key}
                     onClick={() => toggleSection(section.key)}
                     className="px-3 py-2 rounded bg-slate-50 hover:bg-slate-100 text-sm"
                     aria-expanded={!!openSections[section.key]}
@@ -101,7 +157,7 @@ export default function Layout({ children }) {
                   {/* dropdown panel */}
                   <div
                     id={`section-${section.key}`}
-                    className={`${openSections[section.key] ? 'block' : 'hidden'} absolute right-0 mt-2 w-64 bg-white border rounded shadow-lg z-50`}
+                    className={`absolute right-0 mt-2 w-64 bg-white border rounded shadow-lg z-50 transform transition-all duration-200 origin-top-right ${openSections[section.key] ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}
                     role="region"
                     aria-label={`${section.label} submenu`}
                   >
@@ -155,7 +211,7 @@ export default function Layout({ children }) {
                     <span aria-hidden="true">{openSections[section.key] ? '−' : '+'}</span>
                   </button>
 
-                  <div id={`section-${section.key}`} className={`${openSections[section.key] ? 'block' : 'hidden'} mt-2`}>
+                  <div id={`section-${section.key}`} className={`${openSections[section.key] ? 'block' : 'hidden'} mt-2 transition-all duration-200`}> 
                     <ul className="space-y-1">
                       {section.items.map((item) => (
                         <li key={item.href}>
