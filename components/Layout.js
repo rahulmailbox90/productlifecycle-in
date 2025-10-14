@@ -74,18 +74,57 @@ export default function Layout({ children }) {
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              aria-controls="site-menu"
-              aria-expanded={menuOpen}
-              aria-haspopup="true"
-              onClick={() => setMenuOpen((v) => !v)}
-              className="inline-flex items-center gap-2 px-3 py-2 rounded bg-slate-50 hover:bg-slate-100"
-            >
-              Menu
-              <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M5 8h10v2H5zM5 11h10v2H5z" />
-              </svg>
-            </button>
+            {/* Desktop: show top-level section buttons that toggle dropdowns */}
+            <div className="hidden md:flex items-center gap-2">
+              {MENU.map((section) => (
+                <div key={section.key} className="relative">
+                  <button
+                    onClick={() => toggleSection(section.key)}
+                    className="px-3 py-2 rounded bg-slate-50 hover:bg-slate-100 text-sm"
+                    aria-expanded={!!openSections[section.key]}
+                    aria-controls={`section-${section.key}`}
+                  >
+                    {section.label}
+                  </button>
+
+                  {/* dropdown panel */}
+                  <div
+                    id={`section-${section.key}`}
+                    className={`${openSections[section.key] ? 'block' : 'hidden'} absolute right-0 mt-2 w-64 bg-white border rounded shadow-lg z-50`}
+                    role="region"
+                    aria-label={`${section.label} submenu`}
+                  >
+                    <ul className="p-3 space-y-1">
+                      {section.items.map((item) => (
+                        <li key={item.href}>
+                          <Link href={item.href}>
+                            <a className={`block px-2 py-1 rounded ${isActive(item.href) ? 'bg-slate-100 font-semibold' : 'hover:bg-slate-50'}`} aria-current={isActive(item.href) ? 'page' : undefined}>
+                              {item.label}
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile: Menu button */}
+            <div className="md:hidden">
+              <button
+                aria-controls="site-menu"
+                aria-expanded={menuOpen}
+                aria-haspopup="true"
+                onClick={() => setMenuOpen((v) => !v)}
+                className="inline-flex items-center gap-2 px-3 py-2 rounded bg-slate-50 hover:bg-slate-100"
+              >
+                Menu
+                <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M5 8h10v2H5zM5 11h10v2H5z" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
