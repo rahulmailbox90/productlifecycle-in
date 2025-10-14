@@ -10,7 +10,10 @@ export default function Home() {
         <h1 className="text-3xl font-bold mb-2">Product Lifecycle. Hands-on. End-to-End.</h1>
         <p className="text-slate-600">Learn product management for financial services by interacting with live demos, reviewing BRDs/FSDs and practicing PM scenarios.</p>
         <div className="mt-6">
-          <Link href="/products"><a className="inline-block bg-slate-900 text-white px-4 py-2 rounded">Explore Demo Products</a></Link>
+          <div className="flex gap-3">
+            <Link href="/products"><a className="inline-block bg-slate-900 text-white px-4 py-2 rounded">Explore Demo Products</a></Link>
+            <Link href="/learn/jargons"><a className="inline-block bg-white border border-slate-200 px-4 py-2 rounded">Glossary: Jargons</a></Link>
+          </div>
         </div>
       </section>
 
