@@ -175,14 +175,14 @@ export default function Layout({ children }) {
   <div ref={headerRef} className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/">
-              <a className="flex items-center gap-3">
-                {/* Logo image: place the file at /public/images/productlifecycle-logo.png */}
+              <a className="flex items-center">
+                {/* Logo only (visually). Keep accessible site name for screen readers. */}
                 <img
                   src="/images/productlifecycle-logo.png"
                   alt="productlifecycle.in"
-                  className="h-24 md:h-28 w-auto object-contain"
+                  className="h-32 md:h-36 w-auto object-contain"
                 />
-                <span className="text-xl font-semibold">productlifecycle.in</span>
+                <span className="sr-only">productlifecycle.in</span>
               </a>
             </Link>
           </div>
