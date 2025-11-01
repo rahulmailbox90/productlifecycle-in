@@ -1,6 +1,14 @@
-import Frameworks from '../frameworks'
+// Redirect /learn/frameworks to the canonical /frameworks
+export async function getServerSideProps() {
+  return {
+    redirect: {
+      destination: '/frameworks',
+      permanent: true,
+    },
+  }
+}
 
-// Reuse the main Frameworks page so both routes render the same content
 export default function LearnFrameworks() {
-  return <Frameworks />
+  // This component is never rendered because of the server-side redirect
+  return null
 }
