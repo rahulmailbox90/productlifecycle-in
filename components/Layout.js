@@ -180,7 +180,7 @@ export default function Layout({ children }) {
                 <img
                   src="/images/productlifecycle-logo.png"
                   alt="productlifecycle.in"
-                  className="h-12 md:h-14 w-auto object-contain"
+                  className="h-24 md:h-28 w-auto object-contain"
                 />
                 <span className="text-xl font-semibold">productlifecycle.in</span>
               </a>
