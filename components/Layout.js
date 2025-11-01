@@ -173,9 +173,17 @@ export default function Layout({ children }) {
     <div className="min-h-screen flex flex-col">
       <header className="bg-white shadow sticky top-0 z-40">
   <div ref={headerRef} className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             <Link href="/">
-              <a className="text-xl font-semibold">productlifecycle.in</a>
+              <a className="flex items-center gap-3">
+                {/* Logo image: place the file at /public/images/productlifecycle-logo.png */}
+                <img
+                  src="/images/productlifecycle-logo.png"
+                  alt="productlifecycle.in"
+                  className="h-10 w-auto object-contain"
+                />
+                <span className="text-xl font-semibold">productlifecycle.in</span>
+              </a>
             </Link>
           </div>
 
