@@ -24,6 +24,55 @@ export default function Foundations() {
       <section className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold">🏗️ 1. The Evolution of Product Management — From Project Delivery to Value Creation</h2>
 
+        {/* Inline SVG timeline: Project → Product → Value */}
+        <div className="mt-4 flex justify-center">
+          <svg
+            className="w-full max-w-3xl h-36"
+            viewBox="0 0 540 120"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="evolutionTimelineTitle"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <title id="evolutionTimelineTitle">Evolution timeline: Project to Product to Value</title>
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0%" stopColor="#0ea5a4" />
+                <stop offset="100%" stopColor="#06b6d4" />
+              </linearGradient>
+              <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                <path d="M0,0 L10,4 L0,8 z" fill="#0f766e" />
+              </marker>
+            </defs>
+
+            {/* connecting line */}
+            <line x1="40" y1="40" x2="500" y2="40" stroke="url(#g)" strokeWidth="6" strokeLinecap="round" markerEnd="url(#arrow)" />
+
+            {/* Project node */}
+            <g>
+              <circle cx="80" cy="40" r="18" fill="#06b6d4" />
+              <text x="80" y="72" fontSize="12" textAnchor="middle" fill="#044e4a">Project</text>
+            </g>
+
+            {/* Product node */}
+            <g>
+              <circle cx="270" cy="40" r="22" fill="#0ea5a4" />
+              <text x="270" y="76" fontSize="12" textAnchor="middle" fill="#044e4a">Product</text>
+            </g>
+
+            {/* Value node */}
+            <g>
+              <circle cx="460" cy="40" r="18" fill="#06b6d4" />
+              <text x="460" y="72" fontSize="12" textAnchor="middle" fill="#044e4a">Value</text>
+            </g>
+
+            {/* small labels under nodes for extra context */}
+            <text x="80" y="90" fontSize="11" textAnchor="middle" fill="#334155">Outputs →</text>
+            <text x="270" y="90" fontSize="11" textAnchor="middle" fill="#334155">Outcomes →</text>
+            <text x="460" y="90" fontSize="11" textAnchor="middle" fill="#334155">Business & User Value</text>
+          </svg>
+        </div>
+
         <p>Product Management has evolved drastically over the last two decades. What started as project coordination has transformed into strategic value creation at the heart of modern businesses.</p>
 
         <h3 className="font-semibold">🕰️ Early Phase: Project Delivery</h3>
