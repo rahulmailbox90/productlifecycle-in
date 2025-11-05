@@ -303,7 +303,15 @@ export default function Layout({ children }) {
         </div>
 
         {/* accordion panel */}
-        <div id="site-menu" ref={siteMenuRef} className={`${menuOpen ? 'block' : 'hidden'} border-t bg-white`} role="dialog" aria-modal={menuOpen} aria-labelledby="menu-toggle"> 
+        <div
+          id="site-menu"
+          ref={siteMenuRef}
+          className={`${menuOpen ? 'block' : 'hidden'} absolute left-0 right-0 top-full z-50 border-t bg-white pointer-events-auto`}
+          role="dialog"
+          aria-modal={menuOpen}
+          aria-labelledby="menu-toggle"
+          aria-hidden={!menuOpen}
+        >
           <div className="container mx-auto px-6 py-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {MENU.map((section) => (
