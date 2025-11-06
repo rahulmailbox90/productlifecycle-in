@@ -32,6 +32,7 @@ export default function Layout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [openSections, setOpenSections] = useState({})
   const headerRef = useRef(null)
+  const siteMenuRef = useRef(null)
   const buttonsRef = useRef([])
   const submenuRefs = useRef({})
 
@@ -39,6 +40,53 @@ export default function Layout({ children }) {
     // close menu when route changes
     setMenuOpen(false)
   }, [router.pathname])
+
+  // focus trap for mobile menu
+  useEffect(() => {
+    if (!menuOpen) return
+    const prevActive = document.activeElement
+    const container = siteMenuRef.current
+    if (!container) return
+
+    // focus first focusable element
+    const focusable = container.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')
+    const first = focusable && focusable[0]
+    if (first) first.focus()
+
+    const onKey = (e) => {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        setMenuOpen(false)
+        return
+      }
+      if (e.key === 'Tab') {
+        // trap focus inside the container
+        const nodes = Array.from(focusable).filter((n) => !n.hasAttribute('disabled'))
+        if (nodes.length === 0) return
+        const idx = nodes.indexOf(document.activeElement)
+        if (e.shiftKey) {
+          // shift+tab
+          if (idx === 0 || document.activeElement === container) {
+            e.preventDefault()
+            nodes[nodes.length - 1].focus()
+          }
+        } else {
+          // tab
+          if (idx === nodes.length - 1) {
+            e.preventDefault()
+            nodes[0].focus()
+          }
+        }
+      }
+    }
+
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      try {
+        if (prevActive && prevActive.focus) prevActive.focus()
+      } catch (err) {}
+    }
+  }, [menuOpen])
 
   const toggleSection = (key) => {
     setOpenSections((s) => {
@@ -171,8 +219,8 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-white shadow sticky top-0 z-40">
-  <div ref={headerRef} className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <header ref={headerRef} className="bg-white shadow sticky top-0 z-40">
+  <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/">
               <a className="flex items-center gap-3">
@@ -237,14 +285,16 @@ export default function Layout({ children }) {
             {/* Mobile: Menu button */}
             <div className="md:hidden">
               <button
+                id="menu-toggle"
                 aria-controls="site-menu"
                 aria-expanded={menuOpen}
                 aria-haspopup="true"
                 onClick={() => setMenuOpen((v) => !v)}
-                className="inline-flex items-center gap-2 px-3 py-2 rounded bg-slate-50 hover:bg-slate-100"
+                className="inline-flex items-center gap-2 px-4 py-3 rounded bg-slate-50 hover:bg-slate-100 text-base"
               >
-                Menu
-                <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <span className="sr-only">Toggle main menu</span>
+                <span aria-hidden="true">Menu</span>
+                <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path d="M5 8h10v2H5zM5 11h10v2H5z" />
                 </svg>
               </button>
@@ -253,22 +303,29 @@ export default function Layout({ children }) {
         </div>
 
         {/* accordion panel */}
-        <div id="site-menu" className={`${menuOpen ? 'block' : 'hidden'} border-t bg-white`}> 
+        <div
+          id="site-menu"
+          ref={siteMenuRef}
+          className={`${menuOpen ? 'block' : 'hidden'} absolute left-0 right-0 top-full z-50 border-t bg-white pointer-events-auto`}
+          role="dialog"
+          aria-modal={menuOpen}
+          aria-labelledby="menu-toggle"
+          aria-hidden={!menuOpen}
+        >
           <div className="container mx-auto px-6 py-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {MENU.map((section) => (
                 <div key={section.key}>
                   <button
                     onClick={() => toggleSection(section.key)}
-                    className="w-full text-left px-3 py-2 bg-slate-50 rounded flex justify-between items-center"
+                    className="w-full text-left px-3 py-3 bg-slate-50 rounded flex justify-between items-center text-base"
                     aria-expanded={!!openSections[section.key]}
-                    aria-controls={`section-${section.key}`}
+                    aria-controls={`section-${section.key}-mobile`}
                   >
                     <span className="font-semibold">{section.label}</span>
                     <span aria-hidden="true">{openSections[section.key] ? '−' : '+'}</span>
                   </button>
-
-                  <div id={`section-${section.key}`} className={`${openSections[section.key] ? 'block' : 'hidden'} mt-2 transition-all duration-200`}> 
+                  <div id={`section-${section.key}-mobile`} className={`${openSections[section.key] ? 'block' : 'hidden'} mt-2 transition-all duration-200`} role="menu" aria-label={`${section.label} menu`}> 
                     <ul className="space-y-1">
                       {section.items.map((item, j) => (
                         <li key={item.href}>
@@ -279,7 +336,8 @@ export default function Layout({ children }) {
                                 submenuRefs.current[section.key] = submenuRefs.current[section.key] || []
                                 submenuRefs.current[section.key][j] = el
                               }}
-                              className={`block px-3 py-2 rounded ${isActive(item.href) ? 'bg-slate-100 font-semibold' : 'hover:bg-slate-50'}`}
+                              role="menuitem"
+                              className={`block px-3 py-3 rounded ${isActive(item.href) ? 'bg-slate-100 font-semibold' : 'hover:bg-slate-50'}`}
                               aria-current={isActive(item.href) ? 'page' : undefined}
                             >
                               {item.label}
