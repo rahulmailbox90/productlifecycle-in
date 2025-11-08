@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="400" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#E6F0FF" />
+      <stop offset="100%" stop-color="#F0FBFF" />
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#9FD3FF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#7AD0FF" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="400" fill="url(#g1)" />
+
+  <!-- soft rounded shapes -->
+  <g opacity="0.9">
+    <ellipse cx="220" cy="120" rx="220" ry="80" fill="url(#g2)" />
+    <ellipse cx="960" cy="280" rx="260" ry="90" fill="#E8FFFA" />
+    <ellipse cx="700" cy="80" rx="160" ry="60" fill="#FFF4E6" />
+  </g>
+
+  <!-- simple framework icons as dots + lines -->
+  <g transform="translate(60,180) scale(1)" opacity="0.95">
+    <line x1="0" y1="40" x2="1080" y2="40" stroke="#DCEFFF" stroke-width="2" stroke-linecap="round" />
+    <circle cx="40" cy="40" r="12" fill="#3A7BD5" />
+    <circle cx="220" cy="40" r="12" fill="#00C9A7" />
+    <circle cx="420" cy="40" r="12" fill="#FF9966" />
+    <circle cx="620" cy="40" r="12" fill="#A770EF" />
+    <circle cx="820" cy="40" r="12" fill="#F7971E" />
+    <circle cx="1020" cy="40" r="12" fill="#00B09B" />
+  </g>
+
+  <!-- caption text (decorative) -->
+  <text x="60" y="360" font-family="Inter, Arial, sans-serif" font-size="12" fill="#6B7280">Frameworks • mental models • decisions</text>
+</svg>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="140" viewBox="0 0 1200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tg" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#CFE9FF"/>
+      <stop offset="100%" stop-color="#E8FFF6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="140" fill="transparent" />
+
+  <!-- timeline line -->
+  <line x1="60" y1="70" x2="1140" y2="70" stroke="#E6EEF8" stroke-width="6" stroke-linecap="round" />
+
+  <!-- milestones -->
+  <g font-family="Inter, Arial, sans-serif" font-size="12" fill="#334155">
+    <g transform="translate(60,70)">
+      <circle cx="0" cy="0" r="10" fill="#3A7BD5" />
+      <text x="24" y="4">Early product-market fit</text>
+    </g>
+
+    <g transform="translate(300,70)">
+      <circle cx="0" cy="0" r="10" fill="#00C9A7" />
+      <text x="24" y="4">Growth & metrics</text>
+    </g>
+
+    <g transform="translate(560,70)">
+      <circle cx="0" cy="0" r="10" fill="#FF9966" />
+      <text x="24" y="4">Scaling architecture</text>
+    </g>
+
+    <g transform="translate(820,70)">
+      <circle cx="0" cy="0" r="10" fill="#A770EF" />
+      <text x="24" y="4">Data-driven culture</text>
+    </g>
+
+    <g transform="translate(1080,70)">
+      <circle cx="0" cy="0" r="10" fill="#F7971E" />
+      <text x="24" y="4">Product-led expansion</text>
+    </g>
+  </g>
+</svg>
