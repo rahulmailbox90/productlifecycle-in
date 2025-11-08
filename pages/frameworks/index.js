@@ -125,34 +125,38 @@ export default function Frameworks() {
 
         <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6">
           {GRID.map((c) => (
-            <article key={c.key} className="relative bg-white rounded-2xl shadow-sm overflow-hidden" style={{minHeight: '220px'}}>
-              <div className="h-3" style={{background: `linear-gradient(90deg, ${c.color[0]}, ${c.color[1]})`}} />
-              <div className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-xl" style={{background: `${c.color[0]}22`}}>{c.icon}</div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold">{c.title}</h3>
-                    <div className="mt-2 text-sm text-slate-600"><strong>Purpose:</strong> {c.purpose}</div>
-                  </div>
-                </div>
+            <Link key={c.key} href={`/frameworks/${c.key}`}>
+              <a aria-label={`Open ${c.title} framework`} className="block">
+                <article className="relative bg-white rounded-2xl shadow-sm overflow-hidden" style={{minHeight: '220px'}}>
+                  <div className="h-3" style={{background: `linear-gradient(90deg, ${c.color[0]}, ${c.color[1]})`}} />
+                  <div className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center text-xl" style={{background: `${c.color[0]}22`}}>{c.icon}</div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold">{c.title}</h3>
+                        <div className="mt-2 text-sm text-slate-600"><strong>Purpose:</strong> {c.purpose}</div>
+                      </div>
+                    </div>
 
-                <hr className="my-4" />
+                    <hr className="my-4" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <div className="text-sm text-slate-600"><strong>What it is</strong></div>
-                    <div className="mt-1 text-sm">{c.what}</div>
-                    <div className="mt-2 text-xs text-slate-500"><strong>When:</strong> {c.when}</div>
-                  </div>
-                  <div>
-                    <div className="bg-green-50 border-l-4 border-green-200 p-3 rounded">
-                      <div className="text-sm text-green-700 font-medium">Example</div>
-                      <div className="mt-1 text-sm italic text-slate-700">{c.example}</div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <div className="text-sm text-slate-600"><strong>What it is</strong></div>
+                        <div className="mt-1 text-sm">{c.what}</div>
+                        <div className="mt-2 text-xs text-slate-500"><strong>When:</strong> {c.when}</div>
+                      </div>
+                      <div>
+                        <div className="bg-green-50 border-l-4 border-green-200 p-3 rounded">
+                          <div className="text-sm text-green-700 font-medium">Example</div>
+                          <div className="mt-1 text-sm italic text-slate-700">{c.example}</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </article>
+                </article>
+              </a>
+            </Link>
           ))}
         </div>
       </section>
