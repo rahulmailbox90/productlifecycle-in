@@ -126,8 +126,8 @@ export default function Frameworks() {
         <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6">
           {GRID.map((c) => (
             <Link key={c.key} href={`/frameworks/${c.key}`}>
-              <a aria-label={`Open ${c.title} framework`} className="block">
-                <article className="relative bg-white rounded-2xl shadow-sm overflow-hidden" style={{minHeight: '220px'}}>
+        <a aria-label={`Open ${c.title} framework`} className="block transform transition-transform duration-150 hover:-translate-y-1 hover:shadow-lg focus:-translate-y-1 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-sky-300 rounded-2xl">
+          <article className="relative bg-white rounded-2xl shadow-sm overflow-hidden" style={{minHeight: '220px'}}>
                   <div className="h-3" style={{background: `linear-gradient(90deg, ${c.color[0]}, ${c.color[1]})`}} />
                   <div className="p-6">
                     <div className="flex items-start gap-4">
