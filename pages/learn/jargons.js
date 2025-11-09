@@ -95,7 +95,9 @@ export default function Jargons() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold">Product Management Jargons — Explained Simply</h1>
-            <p className="mt-4 text-lg text-slate-700">Decode every product term, from MVP to PMF — with real-world context and use cases.</p>
+            <p className="mt-4 text-lg text-slate-700">A Complete Reference for Everyday Product Conversations</p>
+            <p className="mt-3 text-base text-slate-600">Understanding Product Management means speaking the language of cross-functional collaboration - from A/B tests to MVPs, from user stories to OKRs.
+            This page helps you decode the most-used PM jargons — and more importantly, when and why they’re used in real product scenarios.</p>
 
             <div className="mt-6">
               <label htmlFor="search" className="sr-only">Search a jargon</label>
