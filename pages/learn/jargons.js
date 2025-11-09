@@ -150,46 +150,134 @@ export default function Jargons() {
             <div className="p-6 bg-white rounded-lg shadow text-center">No terms found for your search.</div>
           )}
 
-          {Object.entries(grouped).map(([cat, items]) => (
-            <section key={cat} className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="text-2xl">{(CATEGORIES.find(c=>c.key===cat)||{}).icon || '🔹'}</div>
-                <h3 className="text-xl font-semibold">{cat} <span className="text-sm text-slate-500">({items.length})</span></h3>
-                <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
-              </div>
+          {Object.entries(grouped).map(([cat, items]) => {
+            // Custom render for Strategy & Collaboration sections using supplied detailed tables
+            if (cat === 'Strategy') {
+              const rows = [
+                ['North Star Metric (NSM)', 'A single, guiding metric that reflects long-term business success.', 'Used in roadmap discussions or goal-setting sessions to align the team on what really matters (e.g., “For Airbnb, nights booked is the North Star Metric.”).'],
+                ['OKR (Objectives and Key Results)', 'A framework to set measurable goals that connect strategy with execution.', 'Used during quarterly planning to define team objectives (“Increase user retention by 20%”).'],
+                ['KPIs (Key Performance Indicators)', 'Quantifiable metrics to track progress on specific outcomes.', 'Used in product review meetings or dashboards (e.g., DAU, NPS, or Conversion Rate).'],
+                ['Vision Statement', 'A future-facing statement of what the product aims to achieve long-term.', 'Used in product decks or presentations to communicate the big picture.'],
+                ['Mission Statement', 'Defines the product’s purpose and approach to achieving the vision.', 'Used in leadership discussions or team onboarding materials.'],
+                ['Strategy Pillars', 'Core themes or focus areas that guide product strategy.', 'Used in annual planning to frame priorities (e.g., “Trust, Growth, Efficiency”).'],
+                ['Product-Market Fit (PMF)', 'The point when a product satisfies strong market demand.', 'Used in startup phases or growth reviews (“We’re seeing early PMF in Tier 2 cities”).'],
+              ]
 
-              <div className="space-y-3">
-                {items.map((j) => (
-                  <details key={j.term} className="group bg-white rounded-lg p-4 border border-slate-100 shadow-sm hover:shadow-md">
-                    <summary className="flex items-center justify-between cursor-pointer list-none">
-                      <div>
-                        <div className="text-lg font-semibold">{j.term} {favorites[j.term] ? '⭐' : ''}</div>
-                        <div className="text-sm text-slate-600 mt-1">{j.short}</div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <button onClick={(e)=>{ e.preventDefault(); e.stopPropagation(); toggleFav(j.term) }} className="text-sm text-slate-500 hover:text-yellow-500">{favorites[j.term] ? 'Unfav' : 'Fav'}</button>
-                        <span className="text-slate-400">▾</span>
-                      </div>
-                    </summary>
+              return (
+                <section key={cat} className="mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="text-2xl">🎯</div>
+                    <h3 className="text-xl font-semibold">1. Strategy & Vision Jargons <span className="text-sm text-slate-500">({rows.length})</span></h3>
+                    <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
+                  </div>
 
-                    <div className="mt-3 text-slate-700">
-                      {j.definition}
-                      {j.scenario && <div className="mt-2 italic text-sm text-slate-600">{j.scenario}</div>}
+                  <div className="overflow-x-auto bg-white rounded-lg border border-slate-100 p-4">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-left text-slate-600">
+                          <th className="py-2 pr-4">Jargon</th>
+                          <th className="py-2 pr-4">Meaning</th>
+                          <th className="py-2">Where It’s Used</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rows.map((r, i) => (
+                          <tr key={i} className="border-t border-slate-100 hover:bg-slate-50">
+                            <td className="py-3 font-semibold">{r[0]}</td>
+                            <td className="py-3 text-slate-700">{r[1]}</td>
+                            <td className="py-3 text-slate-600">{r[2]}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              )
+            }
 
-                      {j.related && (
-                        <div className="mt-3">
-                          <div className="text-sm font-semibold">Related:</div>
-                          <div className="flex gap-2 mt-2 flex-wrap">
-                            {j.related.map(r=> <button key={r} className="text-xs px-2 py-1 bg-slate-100 rounded">{r}</button>)}
-                          </div>
+            if (cat === 'Collaboration') {
+              const rows = [
+                ['Stakeholders', 'Anyone with interest or influence in the product.', 'Used in planning and communication meetings.'],
+                ['Cross-functional Teams', 'Teams that include PMs, designers, engineers, and marketers.', 'Used in sprint ceremonies and roadmap reviews.'],
+                ['Alignment', 'Ensuring everyone understands and supports the same priorities.', 'Used in leadership or sprint kickoff meetings.'],
+                ['Dependencies', 'Tasks or teams that rely on each other for delivery.', 'Used in sprint planning and program management.'],
+                ['Escalation', 'Raising a blocker or decision to leadership.', 'Used when team-level conflicts need resolution.'],
+              ]
+
+              return (
+                <section key={cat} className="mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="text-2xl">🤝</div>
+                    <h3 className="text-xl font-semibold">7. Collaboration & Stakeholder Jargons <span className="text-sm text-slate-500">({rows.length})</span></h3>
+                    <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
+                  </div>
+
+                  <div className="overflow-x-auto bg-white rounded-lg border border-slate-100 p-4">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-left text-slate-600">
+                          <th className="py-2 pr-4">Jargon</th>
+                          <th className="py-2 pr-4">Meaning</th>
+                          <th className="py-2">Where It’s Used</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rows.map((r, i) => (
+                          <tr key={i} className="border-t border-slate-100 hover:bg-slate-50">
+                            <td className="py-3 font-semibold">{r[0]}</td>
+                            <td className="py-3 text-slate-700">{r[1]}</td>
+                            <td className="py-3 text-slate-600">{r[2]}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              )
+            }
+
+            // default rendering for other categories
+            return (
+              <section key={cat} className="mb-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="text-2xl">{(CATEGORIES.find(c=>c.key===cat)||{}).icon || '🔹'}</div>
+                  <h3 className="text-xl font-semibold">{cat} <span className="text-sm text-slate-500">({items.length})</span></h3>
+                  <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
+                </div>
+
+                <div className="space-y-3">
+                  {items.map((j) => (
+                    <details key={j.term} className="group bg-white rounded-lg p-4 border border-slate-100 shadow-sm hover:shadow-md">
+                      <summary className="flex items-center justify-between cursor-pointer list-none">
+                        <div>
+                          <div className="text-lg font-semibold">{j.term} {favorites[j.term] ? '⭐' : ''}</div>
+                          <div className="text-sm text-slate-600 mt-1">{j.short}</div>
                         </div>
-                      )}
-                    </div>
-                  </details>
-                ))}
-              </div>
-            </section>
-          ))}
+                        <div className="flex items-center gap-2">
+                          <button onClick={(e)=>{ e.preventDefault(); e.stopPropagation(); toggleFav(j.term) }} className="text-sm text-slate-500 hover:text-yellow-500">{favorites[j.term] ? 'Unfav' : 'Fav'}</button>
+                          <span className="text-slate-400">▾</span>
+                        </div>
+                      </summary>
+
+                      <div className="mt-3 text-slate-700">
+                        {j.definition}
+                        {j.scenario && <div className="mt-2 italic text-sm text-slate-600">{j.scenario}</div>}
+
+                        {j.related && (
+                          <div className="mt-3">
+                            <div className="text-sm font-semibold">Related:</div>
+                            <div className="flex gap-2 mt-2 flex-wrap">
+                              {j.related.map(r=> <button key={r} className="text-xs px-2 py-1 bg-slate-100 rounded">{r}</button>)}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )
+          })}
 
           {/* Usage scenarios highlight block */}
           <section className="mt-12 bg-sky-50 p-6 rounded-lg">
