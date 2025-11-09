@@ -313,6 +313,44 @@ export default function Jargons() {
             </div>
           </section>
 
+          {/* 2. Discovery & Research Jargons (table) */}
+          <section className="mt-12">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="text-2xl">🔍</div>
+              <h3 className="text-xl font-semibold">2. Discovery & Research Jargons</h3>
+              <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
+            </div>
+
+            <div className="overflow-x-auto bg-white rounded-lg border border-slate-100 p-4">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-left text-slate-600">
+                    <th className="py-2 pr-4">Jargon</th>
+                    <th className="py-2 pr-4">Meaning</th>
+                    <th className="py-2">Where It’s Used</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['User Persona', 'A fictional representation of your target user segment.', 'Used during discovery workshops or UX design phases.'],
+                    ['Pain Point', 'A user’s specific frustration or problem your product aims to solve.', 'Used during user interviews and defining problem statements.'],
+                    ['JTBD (Jobs To Be Done)', 'A framework focusing on what users “hire” a product to do.', 'Used during feature ideation (e.g., “Users hire Swiggy for reliable meal delivery”).'],
+                    ['User Journey Map', 'A visual flow of how users interact with your product.', 'Used by UX teams to identify friction points and opportunities.'],
+                    ['Usability Testing', 'Observing real users as they use your product.', 'Used before major design rollouts to validate experience.'],
+                    ['Market Segmentation', 'Dividing users into groups based on needs or behavior.', 'Used in go-to-market and product targeting decisions.'],
+                    ['Empathy Map', 'A tool to visualize what users think, feel, say, and do.', 'Used in discovery sessions to humanize data insights.'],
+                  ].map((r, i) => (
+                    <tr key={i} className="border-t border-slate-100 hover:bg-slate-50">
+                      <td className="py-3 font-semibold">{r[0]}</td>
+                      <td className="py-3 text-slate-700">{r[1]}</td>
+                      <td className="py-3 text-slate-600">{r[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
           {/* Quick reference & downloads */}
           <section className="mt-12 text-center">
             <h3 className="text-xl font-semibold">Download or Explore All Jargons</h3>
