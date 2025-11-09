@@ -2,9 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Simple page container */
+:root {
+  --color-primary: #0055CC; /* Deep Blue */
+  --color-teal: #00B8A9;
+  --color-accent: #FFD23F; /* Yellow accent */
+  --color-coral: #FF6F61;
+  --neutral-bg: #F9FAFB;
+}
+
+/* Simple page container and typography */
 body {
-  @apply bg-slate-50 text-slate-800;
+  background-color: var(--neutral-bg);
+  color: #0f172a; /* slate-900 */
+  font-family: 'Open Sans', 'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+.font-heading {
+  font-family: 'Poppins', 'Inter', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Section padding guideline from design */
+.section-pad {
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 /* Smooth scrolling for in-page anchors */
