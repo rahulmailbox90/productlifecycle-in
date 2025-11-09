@@ -23,4 +23,285 @@
 		"term": "Agile Values",
 		"definition": "Agile Values refers to the set of 4 values outlined by the Agile Alliance in The Agile Manifesto. This set of values encourages putting people before processes, getting software out the door fast, collaborating with customers, and adjusting plans as needed."
 	}
+,
+	{
+		"term": "North Star Metric (NSM)",
+		"definition": "A single, guiding metric that reflects long-term business success.",
+		"category": "Strategy"
+	},
+	{
+		"term": "OKR (Objectives and Key Results)",
+		"definition": "A framework to set measurable goals that connect strategy with execution.",
+		"category": "Strategy"
+	},
+	{
+		"term": "KPIs (Key Performance Indicators)",
+		"definition": "Quantifiable metrics to track progress on specific outcomes.",
+		"category": "Strategy"
+	},
+	{
+		"term": "Vision Statement",
+		"definition": "A future-facing statement of what the product aims to achieve long-term.",
+		"category": "Strategy"
+	},
+	{
+		"term": "Mission Statement",
+		"definition": "Defines the product’s purpose and approach to achieving the vision.",
+		"category": "Strategy"
+	},
+	{
+		"term": "Strategy Pillars",
+		"definition": "Core themes or focus areas that guide product strategy.",
+		"category": "Strategy"
+	},
+	{
+		"term": "Product-Market Fit (PMF)",
+		"definition": "The point when a product satisfies strong market demand.",
+		"category": "Strategy"
+	},
+	{
+		"term": "User Persona",
+		"definition": "A fictional representation of your target user segment.",
+		"category": "Discovery"
+	},
+	{
+		"term": "Pain Point",
+		"definition": "A user’s specific frustration or problem your product aims to solve.",
+		"category": "Discovery"
+	},
+	{
+		"term": "JTBD (Jobs To Be Done)",
+		"definition": "A framework focusing on what users “hire” a product to do.",
+		"category": "Discovery"
+	},
+	{
+		"term": "User Journey Map",
+		"definition": "A visual flow of how users interact with your product.",
+		"category": "Discovery"
+	},
+	{
+		"term": "Usability Testing",
+		"definition": "Observing real users as they use your product to validate design decisions.",
+		"category": "Discovery"
+	},
+	{
+		"term": "Market Segmentation",
+		"definition": "Dividing users into groups based on needs or behavior.",
+		"category": "Discovery"
+	},
+	{
+		"term": "Empathy Map",
+		"definition": "A tool to visualize what users think, feel, say, and do.",
+		"category": "Discovery"
+	},
+	{
+		"term": "MVP (Minimum Viable Product)",
+		"definition": "The smallest product version that delivers value and validates assumptions.",
+		"category": "Roadmapping"
+	},
+	{
+		"term": "Backlog",
+		"definition": "A prioritized list of tasks or features to be developed.",
+		"category": "Roadmapping"
+	},
+	{
+		"term": "Prioritization Frameworks",
+		"definition": "Methods to decide which features to build first (e.g., RICE, MoSCoW).",
+		"category": "Roadmapping"
+	},
+	{
+		"term": "RICE Score",
+		"definition": "Formula: (Reach × Impact × Confidence) / Effort — helps rank initiatives.",
+		"category": "Roadmapping"
+	},
+	{
+		"term": "MoSCoW Method",
+		"definition": "Categorizes tasks as Must-have, Should-have, Could-have, Won’t-have.",
+		"category": "Roadmapping"
+	},
+	{
+		"term": "Kano Model",
+		"definition": "Classifies features as basic, performance, or delight factors.",
+		"category": "Roadmapping"
+	},
+	{
+		"term": "Trade-off",
+		"definition": "A compromise between features, time, and resources.",
+		"category": "Roadmapping"
+	},
+	{
+		"term": "Wireframe",
+		"definition": "Low-fidelity visual layout of a product screen.",
+		"category": "Design"
+	},
+	{
+		"term": "Mockup",
+		"definition": "A high-fidelity design showing what the final interface looks like.",
+		"category": "Design"
+	},
+	{
+		"term": "Prototype",
+		"definition": "Interactive simulation of the product before coding.",
+		"category": "Design"
+	},
+	{
+		"term": "UI/UX",
+		"definition": "User Interface / User Experience — design disciplines focusing on usability and aesthetics.",
+		"category": "Design"
+	},
+	{
+		"term": "Tech Debt",
+		"definition": "The cost of choosing an easy solution now instead of a better one later.",
+		"category": "Design"
+	},
+	{
+		"term": "API",
+		"definition": "Application Programming Interface — rules that allow software systems to communicate.",
+		"category": "Design"
+	},
+	{
+		"term": "Sprint",
+		"definition": "A fixed time-boxed period (usually 1–2 weeks) to deliver specific work.",
+		"category": "Design"
+	},
+	{
+		"term": "Scrum / Kanban",
+		"definition": "Agile methodologies for organizing team workflows.",
+		"category": "Design"
+	},
+	{
+		"term": "Go-To-Market (GTM)",
+		"definition": "Strategy for launching and promoting a product to users.",
+		"category": "Launch"
+	},
+	{
+		"term": "Beta Launch",
+		"definition": "A limited release to a small user group for feedback.",
+		"category": "Launch"
+	},
+	{
+		"term": "Adoption Rate",
+		"definition": "How quickly users start using a new feature/product.",
+		"category": "Launch"
+	},
+	{
+		"term": "Activation",
+		"definition": "The point when a user experiences value for the first time.",
+		"category": "Launch"
+	},
+	{
+		"term": "Retention",
+		"definition": "The percentage of users who continue using your product over time.",
+		"category": "Launch"
+	},
+	{
+		"term": "Churn Rate",
+		"definition": "The rate at which users stop using your product.",
+		"category": "Launch"
+	},
+	{
+		"term": "Cohort Analysis",
+		"definition": "Tracking user behavior over time by segment.",
+		"category": "Launch"
+	},
+	{
+		"term": "Funnel",
+		"definition": "The stepwise flow users go through from awareness to conversion.",
+		"category": "Launch"
+	},
+	{
+		"term": "DAU / MAU",
+		"definition": "Daily Active Users / Monthly Active Users.",
+		"category": "Metrics"
+	},
+	{
+		"term": "CAC (Customer Acquisition Cost)",
+		"definition": "Cost of acquiring a new user.",
+		"category": "Metrics"
+	},
+	{
+		"term": "LTV (Lifetime Value)",
+		"definition": "Total revenue expected from a customer over their lifespan.",
+		"category": "Metrics"
+	},
+	{
+		"term": "Conversion Rate",
+		"definition": "Percentage of users completing a desired action.",
+		"category": "Metrics"
+	},
+	{
+		"term": "NPS (Net Promoter Score)",
+		"definition": "User loyalty metric based on survey responses.",
+		"category": "Metrics"
+	},
+	{
+		"term": "Engagement Rate",
+		"definition": "How frequently or deeply users interact with your product.",
+		"category": "Metrics"
+	},
+	{
+		"term": "Activation Rate",
+		"definition": "% of new users who reach their first “aha” moment.",
+		"category": "Metrics"
+	},
+	{
+		"term": "Stakeholders",
+		"definition": "Anyone with interest or influence in the product.",
+		"category": "Collaboration"
+	},
+	{
+		"term": "Cross-functional Teams",
+		"definition": "Teams that include PMs, designers, engineers, and marketers.",
+		"category": "Collaboration"
+	},
+	{
+		"term": "Alignment",
+		"definition": "Ensuring everyone understands and supports the same priorities.",
+		"category": "Collaboration"
+	},
+	{
+		"term": "Dependencies",
+		"definition": "Tasks or teams that rely on each other for delivery.",
+		"category": "Collaboration"
+	},
+	{
+		"term": "Escalation",
+		"definition": "Raising a blocker or decision to leadership.",
+		"category": "Collaboration"
+	},
+	{
+		"term": "Concept",
+		"definition": "The initial idea or proposal for a product or feature.",
+		"category": "Lifecycle"
+	},
+	{
+		"term": "Growth Stage",
+		"definition": "Phase where a product gains traction and grows its user base.",
+		"category": "Lifecycle"
+	},
+	{
+		"term": "Maturity",
+		"definition": "When product growth stabilizes and focus shifts to efficiency and optimization.",
+		"category": "Lifecycle"
+	},
+	{
+		"term": "Decline / Sunsetting",
+		"definition": "When a product or feature is retired or its usage steadily decreases over time.",
+		"category": "Lifecycle"
+	},
+	{
+		"term": "Iteration",
+		"definition": "A cycle of updates and improvements based on feedback and metrics.",
+		"category": "Lifecycle"
+	},
+	{
+		"term": "Release Cycle",
+		"definition": "The cadence and process for shipping releases to users.",
+		"category": "Lifecycle"
+	},
+	{
+		"term": "Maintenance",
+		"definition": "Ongoing work required to keep the product stable, secure, and up-to-date.",
+		"category": "Lifecycle"
+	}
 ]

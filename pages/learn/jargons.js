@@ -27,131 +27,50 @@ function inferCategory(term) {
 }
 
 export default function Jargons() {
-  const [query, setQuery] = useState('')
-  const [category, setCategory] = useState('All')
-  const [sort, setSort] = useState('az')
+  // ordered sections to render
+  const order = ['Strategy','Discovery','Roadmapping','Design','Launch','Metrics','Collaboration','Lifecycle']
+
+  // favorites persisted to localStorage
   const [favorites, setFavorites] = useState({})
-
-  // enriched data with category
-  const jargons = useMemo(() => {
-    return jargonsData.map((item) => ({
-      ...item,
-      category: item.category || inferCategory(item.term),
-      short: item.definition ? item.definition.split('.').slice(0, 1).join('.') : '',
-    }))
+  useEffect(()=>{
+    try{
+      const s = localStorage.getItem('jargon-favs')
+      if (s) setFavorites(JSON.parse(s))
+    }catch(e){/* ignore */}
   }, [])
-
-  const filtered = useMemo(() => {
-    let list = jargons.filter((j) => {
-      const matchesQuery = query.trim() === '' || j.term.toLowerCase().includes(query.toLowerCase()) || (j.definition || '').toLowerCase().includes(query.toLowerCase())
-      const matchesCategory = category === 'All' || j.category === category
-      return matchesQuery && matchesCategory
+  const toggleFav = (term) => {
+    setFavorites(prev => {
+      const next = { ...prev }
+      if (next[term]) delete next[term]
+      else next[term] = true
+      try{ localStorage.setItem('jargon-favs', JSON.stringify(next)) }catch(e){}
+      return next
     })
-
-    if (sort === 'az') list = list.sort((a, b) => a.term.localeCompare(b.term))
-    if (sort === 'recent') list = list.reverse()
-    return list
-  }, [jargons, query, category, sort])
-
-  useEffect(() => {
-    // hydrate favorites from localStorage
-    try {
-      const raw = localStorage.getItem('jargon:fav')
-      if (raw) setFavorites(JSON.parse(raw))
-    } catch (e) {}
-  }, [])
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('jargon:fav', JSON.stringify(favorites))
-    } catch (e) {}
-  }, [favorites])
-
-  function toggleFav(term) {
-    setFavorites((s) => ({ ...s, [term]: !s[term] }))
   }
 
-  // group by category for the grid/accordion
-  const grouped = useMemo(() => {
-    const map = {}
-    filtered.forEach((j) => {
-      map[j.category] = map[j.category] || []
-      map[j.category].push(j)
+  // grouped data derived from data/jargons.json
+  const grouped = (()=>{
+    const g = {};
+    (jargonsData || []).forEach(j => {
+      const cat = j.category || inferCategory(j.term || '')
+      if (!g[cat]) g[cat] = []
+      g[cat].push(j)
     })
-    return map
-  }, [filtered])
+    return g
+  })()
 
-  // commonly confused pairs (static)
+  // debug logs during SSR/build to help trace prerender issues
+  try{
+    // eslint-disable-next-line no-console
+    console.log('DEBUG: jargons grouped keys ->', Object.keys(grouped))
+    // eslint-disable-next-line no-console
+    console.log('DEBUG: order ->', order)
+  }catch(e){}
+
   const confused = [
-    { a: 'MVP', b: 'Prototype', diff: 'MVP is released to real users; Prototype is a pre-launch mock.' },
-    { a: 'KPI', b: 'OKR', diff: 'KPI = metric; OKR = goal + key results framework.' },
-    { a: 'Roadmap', b: 'Backlog', diff: 'Roadmap = strategic plan; Backlog = execution list.' },
+    { a: 'Retention', b: 'Churn', diff: 'Retention is who stays; churn is who leaves — both are complementary metrics.' },
+    { a: 'MVP', b: 'Prototype', diff: 'MVP is production-ready minimal product; prototype is usually non-production, for validation.' },
   ]
-
-  return (
-    <Layout>
-      {/* HERO */}
-      <section className="pt-16 pb-12 px-8 bg-gradient-to-b from-slate-50 to-sky-50" style={{ minHeight: '60vh' }}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold">Product Management Jargons — Explained Simply</h1>
-            <p className="mt-4 text-lg text-slate-700">A Complete Reference for Everyday Product Conversations</p>
-            <p className="mt-3 text-base text-slate-600">Understanding Product Management means speaking the language of cross-functional collaboration - from A/B tests to MVPs, from user stories to OKRs.
-            This page helps you decode the most-used PM jargons — and more importantly, when and why they’re used in real product scenarios.</p>
-
-            <div className="mt-6">
-              <label htmlFor="search" className="sr-only">Search a jargon</label>
-              <div className="flex items-center gap-3 max-w-md">
-                <div className="relative flex-1">
-                  <span className="absolute inset-y-0 left-3 flex items-center text-slate-400">🔍</span>
-                  <input id="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search a jargon..." className="pl-10 pr-4 py-3 w-full rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal-300" />
-                </div>
-                <button onClick={() => setQuery('')} className="px-4 py-3 bg-white border border-slate-200 rounded-lg">Clear</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="hidden md:block">
-            <div className="w-full max-w-sm mx-auto bg-white rounded-lg p-6 shadow">
-              <div className="text-center text-4xl">📘</div>
-              <div className="mt-4 text-slate-700">Quick reference for product terms, grouped by category. Use the search above to find specific terms instantly.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* STICKY TOOLBAR */}
-      <div className="sticky top-16 z-30 bg-transparent">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="bg-white rounded-lg shadow-sm px-4 py-3 flex gap-3 items-center">
-            <div className="flex-1">
-              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="🔍 Search a term..." className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-300" />
-            </div>
-
-            <div className="flex items-center gap-3">
-              <select value={category} onChange={(e) => setCategory(e.target.value)} className="rounded-lg border border-slate-200 px-3 py-2 bg-white">
-                {CATEGORIES.map((c) => <option key={c.key} value={c.key}>{c.icon} {c.label}</option>)}
-              </select>
-
-              <select value={sort} onChange={(e) => setSort(e.target.value)} className="rounded-lg border border-slate-200 px-3 py-2 bg-white">
-                <option value="az">A–Z</option>
-                <option value="recent">Recently Added</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-8 py-10 grid lg:grid-cols-4 gap-8">
-        {/* Main content */}
-        <main className="lg:col-span-3">
-          {/* Categories and Jargons (accordion) */}
-          {Object.keys(grouped).length === 0 && (
-            <div className="p-6 bg-white rounded-lg shadow text-center">No terms found for your search.</div>
-          )}
-
-          {(() => {
-            const order = ['Strategy', 'Discovery', 'Roadmapping', 'Design', 'Launch', 'Metrics', 'Collaboration', 'Lifecycle']
 
             const renderSection = (cat, items) => {
               // Strategy table
@@ -242,6 +161,186 @@ export default function Jargons() {
                 )
               }
 
+              // Roadmapping table
+              if (cat === 'Roadmapping') {
+                const rows = [
+                  ['MVP (Minimum Viable Product)', 'The smallest product version that delivers value and validates assumptions.', 'Used during early development or concept testing (“Let’s ship an MVP to test the demand”).'],
+                  ['Backlog', 'A prioritized list of tasks or features to be developed.', 'Used during sprint planning and backlog grooming sessions.'],
+                  ['Prioritization Frameworks', 'Methods to decide which features to build first.', 'Used during roadmap planning (e.g., RICE, MoSCoW, Kano).'],
+                  ['RICE Score', 'Formula: (Reach × Impact × Confidence) / Effort — helps rank initiatives.', 'Used to prioritize roadmap items objectively.'],
+                  ['MoSCoW Method', 'Categorizes tasks as Must-have, Should-have, Could-have, Won’t-have.', 'Used when balancing product scope or negotiating deadlines.'],
+                  ['Kano Model', 'Classifies features as basic, performance, or delight factors.', 'Used during feature ideation to predict user satisfaction.'],
+                  ['Trade-off', 'A compromise between features, time, and resources.', 'Used in executive reviews or sprint scope discussions.'],
+                ]
+
+                return (
+                  <section key={cat} className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="text-2xl">🧩</div>
+                      <h3 className="text-xl font-semibold">3. Roadmapping & Prioritization Jargons <span className="text-sm text-slate-500">({rows.length})</span></h3>
+                      <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
+                    </div>
+
+                    <div className="overflow-x-auto bg-white rounded-lg border border-slate-100 p-4">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="text-left text-slate-600">
+                            <th className="py-2 pr-4">Jargon</th>
+                            <th className="py-2 pr-4">Meaning</th>
+                            <th className="py-2">Where It’s Used</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {rows.map((r, i) => (
+                            <tr key={i} className="border-t border-slate-100 hover:bg-slate-50">
+                              <td className="py-3 font-semibold">{r[0]}</td>
+                              <td className="py-3 text-slate-700">{r[1]}</td>
+                              <td className="py-3 text-slate-600">{r[2]}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                )
+              }
+
+              // Design & Development table
+              if (cat === 'Design') {
+                const rows = [
+                  ['Wireframe', 'Low-fidelity visual layout of a product screen.', 'Used early in design discussions to visualize structure before UI work.'],
+                  ['Mockup', 'A high-fidelity design showing what the final interface looks like.', 'Used for stakeholder reviews or user testing.'],
+                  ['Prototype', 'Interactive simulation of the product before coding.', 'Used in design validation sessions.'],
+                  ['UI/UX', 'User Interface / User Experience — design disciplines focusing on usability and aesthetics.', 'Used across design & review conversations.'],
+                  ['Tech Debt', 'The cost of choosing an easy solution now instead of a better one later.', 'Used in sprint planning or retrospectives to prioritize refactoring.'],
+                  ['API', 'Application Programming Interface — rules that allow software systems to communicate.', 'Used in integration discussions with engineering.'],
+                  ['Sprint', 'A fixed time-boxed period (usually 1–2 weeks) to deliver specific work.', 'Used in Agile project execution.'],
+                  ['Scrum / Kanban', 'Agile methodologies for organizing team workflows.', 'Used during team process setup or retrospectives.'],
+                ]
+
+                return (
+                  <section key={cat} className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="text-2xl">🖌️</div>
+                      <h3 className="text-xl font-semibold">4. Design & Development Jargons <span className="text-sm text-slate-500">({rows.length})</span></h3>
+                      <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
+                    </div>
+
+                    <div className="overflow-x-auto bg-white rounded-lg border border-slate-100 p-4">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="text-left text-slate-600">
+                            <th className="py-2 pr-4">Jargon</th>
+                            <th className="py-2 pr-4">Meaning</th>
+                            <th className="py-2">Where It’s Used</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {rows.map((r, i) => (
+                            <tr key={i} className="border-t border-slate-100 hover:bg-slate-50">
+                              <td className="py-3 font-semibold">{r[0]}</td>
+                              <td className="py-3 text-slate-700">{r[1]}</td>
+                              <td className="py-3 text-slate-600">{r[2]}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                )
+              }
+
+              // Launch table
+              if (cat === 'Launch') {
+                const rows = [
+                  ['Go-To-Market (GTM)', 'Strategy for launching and promoting a product to users.', 'Used before launch to coordinate marketing, sales, and product efforts.'],
+                  ['Beta Launch', 'A limited release to a small user group for feedback.', 'Used before public release to catch bugs or usability issues.'],
+                  ['Adoption Rate', 'How quickly users start using a new feature/product.', 'Used post-launch in performance reports.'],
+                  ['Activation', 'The point when a user experiences value for the first time.', 'Used in onboarding design and growth analytics.'],
+                  ['Retention', 'The percentage of users who continue using your product over time.', 'Used in performance dashboards and churn analysis.'],
+                  ['Churn Rate', 'The rate at which users stop using your product.', 'Used in growth and retention strategy reviews.'],
+                  ['Cohort Analysis', 'Tracking user behavior over time by segment.', 'Used in growth analytics to assess engagement trends.'],
+                  ['Funnel', 'The stepwise flow users go through from awareness to conversion.', 'Used in marketing/product analytics dashboards.'],
+                ]
+
+                return (
+                  <section key={cat} className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="text-2xl">🚀</div>
+                      <h3 className="text-xl font-semibold">5. Launch & Growth Jargons <span className="text-sm text-slate-500">({rows.length})</span></h3>
+                      <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
+                    </div>
+
+                    <div className="overflow-x-auto bg-white rounded-lg border border-slate-100 p-4">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="text-left text-slate-600">
+                            <th className="py-2 pr-4">Jargon</th>
+                            <th className="py-2 pr-4">Meaning</th>
+                            <th className="py-2">Where It’s Used</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {rows.map((r, i) => (
+                            <tr key={i} className="border-t border-slate-100 hover:bg-slate-50">
+                              <td className="py-3 font-semibold">{r[0]}</td>
+                              <td className="py-3 text-slate-700">{r[1]}</td>
+                              <td className="py-3 text-slate-600">{r[2]}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                )
+              }
+
+              // Metrics table
+              if (cat === 'Metrics') {
+                const rows = [
+                  ['DAU / MAU', 'Daily Active Users / Monthly Active Users.', 'Used in growth reports and retention tracking.'],
+                  ['CAC (Customer Acquisition Cost)', 'Cost of acquiring a new user.', 'Used in marketing and budgeting discussions.'],
+                  ['LTV (Lifetime Value)', 'Total revenue expected from a customer over their lifespan.', 'Used in ROI calculations.'],
+                  ['Conversion Rate', 'Percentage of users completing a desired action.', 'Used in product performance analysis.'],
+                  ['NPS (Net Promoter Score)', 'User loyalty metric based on survey responses.', 'Used in feedback dashboards and product review decks.'],
+                  ['Engagement Rate', 'How frequently or deeply users interact with your product.', 'Used in analytics to measure stickiness.'],
+                  ['Activation Rate', '% of new users who reach their first “aha” moment.', 'Used in onboarding reviews.'],
+                ]
+
+                return (
+                  <section key={cat} className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="text-2xl">📊</div>
+                      <h3 className="text-xl font-semibold">6. Metrics & Analytics Jargons <span className="text-sm text-slate-500">({rows.length})</span></h3>
+                      <button title="Info" className="ml-2 text-slate-400">ℹ️</button>
+                    </div>
+
+                    <div className="overflow-x-auto bg-white rounded-lg border border-slate-100 p-4">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="text-left text-slate-600">
+                            <th className="py-2 pr-4">Jargon</th>
+                            <th className="py-2 pr-4">Meaning</th>
+                            <th className="py-2">Where It’s Used</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {rows.map((r, i) => (
+                            <tr key={i} className="border-t border-slate-100 hover:bg-slate-50">
+                              <td className="py-3 font-semibold">{r[0]}</td>
+                              <td className="py-3 text-slate-700">{r[1]}</td>
+                              <td className="py-3 text-slate-600">{r[2]}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                )
+              }
+
+              
+
               // Collaboration table
               if (cat === 'Collaboration') {
                 const rows = [
@@ -327,16 +426,25 @@ export default function Jargons() {
               )
             }
 
-            const rendered = []
-            order.forEach((k) => {
-              if (grouped[k]) rendered.push(renderSection(k, grouped[k]))
-            })
-            Object.keys(grouped).filter(k => !order.includes(k)).forEach((k) => {
-              rendered.push(renderSection(k, grouped[k]))
-            })
+            const getRenderedSections = () => {
+              const rendered = []
+              order.forEach((k) => {
+                // render each requested category in the order array; pass grouped[k] or empty list
+                rendered.push(renderSection(k, grouped[k] || []))
+              })
+              // any extra categories not in order
+              Object.keys(grouped).filter(k => !order.includes(k)).forEach((k) => {
+                rendered.push(renderSection(k, grouped[k]))
+              })
 
-            return rendered
-          })()}
+              return rendered
+            }
+            
+  return (
+    <Layout>
+      <div className="max-w-6xl mx-auto px-8">
+        <main className="py-12">
+          {getRenderedSections()}
 
           {/* Usage scenarios highlight block */}
           <section className="mt-12 bg-sky-50 p-6 rounded-lg">
