@@ -63,97 +63,113 @@ export default function Lifecycles() {
         <section className="mb-10">
           <h2 className="text-2xl font-semibold">Lifecycle by Fintech Product Type</h2>
 
-          <article className="mt-6">
-            <h3 className="text-xl font-semibold">Back-Office / Operational Systems Lifecycle</h3>
-            <p className="mt-2 text-slate-700">Back-office products are designed to reduce operational risk, improve efficiency, and ensure accuracy. They are built for correctness, auditability, and resilience.</p>
-            <ol className="mt-3 list-decimal list-inside text-slate-700 space-y-2">
-              <li><strong>Operational Problem Identification</strong> — identify inefficiencies, manual work, errors, or regulatory gaps; PM focuses on real operational pain points.</li>
-              <li><strong>Process Mapping & Control Definition</strong> — document as-is and to-be workflows, control points, approvals, and exceptions.</li>
-              <li><strong>Data & Integration Design</strong> — define data sources, validation rules, and integration touchpoints.</li>
-              <li><strong>Build & Controlled Delivery</strong> — incremental, controlled releases with extensive UAT by operations teams.</li>
-              <li><strong>Parallel Run & Stabilisation</strong> — run in parallel with legacy systems and reconcile outputs before cutover.</li>
-              <li><strong>Operational Optimisation</strong> — performance improvements, automation, and reporting enhancements.</li>
-            </ol>
+          <p className="mt-3 text-slate-700">Compare how the same lifecycle stages play out across product types — see emphasis, sequencing and PM focus at each stage.</p>
 
-            <div className="mt-4">
-              <div className="font-semibold">Key PM Deliverables</div>
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full text-sm bg-white rounded-lg border border-slate-100">
+              <thead>
+                <tr className="text-left text-slate-600">
+                  <th className="p-3 w-48">Stage</th>
+                  <th className="p-3">Back-Office / Operational Systems</th>
+                  <th className="p-3">Consumer-Facing Applications</th>
+                  <th className="p-3">Portfolio / Investment Platforms</th>
+                  <th className="p-3">Reference Data / Market Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-slate-100 align-top">
+                  <td className="p-3 font-semibold">1. Discovery & Problem Identification</td>
+                  <td className="p-3">Often triggered by ops/finance/risk reporting issues or manual work; PM validates operational failure modes and root causes.</td>
+                  <td className="p-3">User research, market gaps and trust issues drive discovery; focus on customer pain and product-market fit.</td>
+                  <td className="p-3">Starts with decision/workflow analysis — what inputs do analysts need and where are current gaps?</td>
+                  <td className="p-3">Begins with scoping data domains and identifying consumers of that data across systems.</td>
+                </tr>
+
+                <tr className="border-t border-slate-100 align-top">
+                  <td className="p-3 font-semibold">2. Feasibility & Compliance Alignment</td>
+                  <td className="p-3">Heavy focus on controls, approvals and feasibility with upstream systems; involve compliance early for auditability.</td>
+                  <td className="p-3">Compliance (KYC/AML/disclosures) is required early; legal/risk shape UX and data capture.</td>
+                  <td className="p-3">Work closely with quants and domain experts to validate feasibility of analytics and data availability.</td>
+                  <td className="p-3">Assess vendor data quality, licensing, SLAs, and ingestion feasibility before design.</td>
+                </tr>
+
+                <tr className="border-t border-slate-100 align-top">
+                  <td className="p-3 font-semibold">3. Requirements & Design</td>
+                  <td className="p-3">Process maps, control definitions, exception workflows, and integration contracts are primary outputs.</td>
+                  <td className="p-3">User journeys, onboarding flows, error states and instrumentation plans are central to design.</td>
+                  <td className="p-3">Detailed calculation specs, report definitions and traceable formulas are written and validated.</td>
+                  <td className="p-3">Data models, validation rules, schemas and lineage documentation are defined as the golden source.</td>
+                </tr>
+
+                <tr className="border-t border-slate-100 align-top">
+                  <td className="p-3 font-semibold">4. Build & Delivery</td>
+                  <td className="p-3">Controlled incremental delivery, feature flags, heavy UAT with ops and parallel runs to verify outputs.</td>
+                  <td className="p-3">Faster iterations, performance and security testing, focus on reliability at scale and monitoring hooks.</td>
+                  <td className="p-3">Extensive analytical testing, backtesting and scenario validation; correctness over raw speed.</td>
+                  <td className="p-3">Robust ingestion, reconciliation jobs, alerting and retry mechanics; reliability is key.</td>
+                </tr>
+
+                <tr className="border-t border-slate-100 align-top">
+                  <td className="p-3 font-semibold">5. Launch / Rollout & Stabilisation</td>
+                  <td className="p-3">Parallel runs, reconciliations and phased cutover; full cutover only after parity is proven.</td>
+                  <td className="p-3">Coordinated marketing, staged rollouts, feature flags and immediate support channels for trust-sensitive issues.</td>
+                  <td className="p-3">User acceptance with domain experts, training, and careful rollout for interpretability.</td>
+                  <td className="p-3">Gradual propagation to downstream systems with monitoring of data drift and reconciliation checks.</td>
+                </tr>
+
+                <tr className="border-t border-slate-100 align-top">
+                  <td className="p-3 font-semibold">6. Monitoring & Continuous Improvement</td>
+                  <td className="p-3">Operational metrics, exception rates, reconciliation accuracy and automation opportunities guide iterations.</td>
+                  <td className="p-3">Adoption, activation, retention, and performance metrics drive product enhancements and growth experiments.</td>
+                  <td className="p-3">Model accuracy, backtesting outcomes, and analytic coverage inform enhancements and new features.</td>
+                  <td className="p-3">Data quality dashboards, lineage checks and governance processes drive ongoing maintenance.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        
+          {/* Keep detailed deliverables below for each type (condensed) */}
+          <div className="mt-6 grid md:grid-cols-2 gap-6">
+            <div className="p-4 bg-white rounded-lg shadow-sm">
+              <div className="font-semibold">Back-Office — Key PM Deliverables</div>
               <ul className="mt-2 text-sm text-slate-600">
-                <li>Workflow and process diagrams</li>
-                <li>Exception handling definitions</li>
-                <li>Control and audit artefacts</li>
-                <li>UAT and sign-off documentation</li>
+                <li>Workflow & process diagrams</li>
+                <li>Exception handling & control artefacts</li>
+                <li>Integration & reconciliation specs</li>
+                <li>UAT scripts and sign-offs</li>
               </ul>
             </div>
-          </article>
 
-          <article className="mt-6">
-            <h3 className="text-xl font-semibold">Consumer-Facing Fintech Applications Lifecycle</h3>
-            <p className="mt-2 text-slate-700">Built around trust, usability, and growth. Failures are visible and directly impact customers.</p>
-            <ol className="mt-3 list-decimal list-inside text-slate-700 space-y-2">
-              <li><strong>User Problem Discovery</strong> — user research, competitive analysis, problem validation.</li>
-              <li><strong>Value Proposition & Experience Design</strong> — onboarding flows, transaction journeys, trust elements.</li>
-              <li><strong>Compliance & Risk Alignment</strong> — embed KYC/AML/disclosures before development.</li>
-              <li><strong>Build, Test & Iterate</strong> — rapid iteration, load/security testing.</li>
-              <li><strong>Launch & Growth</strong> — marketing, education, monitoring adoption metrics.</li>
-              <li><strong>Retention & Continuous Improvement</strong> — reduce churn, improve experience, iterate based on data.</li>
-            </ol>
-
-            <div className="mt-4">
-              <div className="font-semibold">Key PM Deliverables</div>
+            <div className="p-4 bg-white rounded-lg shadow-sm">
+              <div className="font-semibold">Consumer Apps — Key PM Deliverables</div>
               <ul className="mt-2 text-sm text-slate-600">
-                <li>User journeys and UX flows</li>
-                <li>Product Requirement Documents (PRDs)</li>
-                <li>KPI and growth dashboards</li>
-                <li>Release and rollout plans</li>
+                <li>User journeys & UX flows</li>
+                <li>PRDs, acceptance criteria</li>
+                <li>Growth dashboards & instrumentation</li>
+                <li>Rollout & comms plans</li>
               </ul>
             </div>
-          </article>
 
-          <article className="mt-6">
-            <h3 className="text-xl font-semibold">Portfolio / Investment Management Platforms Lifecycle</h3>
-            <p className="mt-2 text-slate-700">Platforms supporting complex financial decisions where accuracy and interpretability beat speed.</p>
-            <ol className="mt-3 list-decimal list-inside text-slate-700 space-y-2">
-              <li><strong>Decision Workflow Identification</strong> — study how decisions are made and what information is required.</li>
-              <li><strong>Analytical & Reporting Requirements</strong> — detailed specs for calculations, benchmarks, and reports.</li>
-              <li><strong>Data Accuracy & Validation Design</strong> — define calculation logic, validation rules, and reconciliation.</li>
-              <li><strong>Build & Analytical Testing</strong> — test formulas, scenarios, historical comparisons.</li>
-              <li><strong>User Acceptance & Training</strong> — train users on interpretation and correct use.</li>
-              <li><strong>Enhancement & Scalability</strong> — support new asset classes and higher data volumes.</li>
-            </ol>
-
-            <div className="mt-4">
-              <div className="font-semibold">Key PM Deliverables</div>
+            <div className="p-4 bg-white rounded-lg shadow-sm">
+              <div className="font-semibold">Portfolio Tools — Key PM Deliverables</div>
               <ul className="mt-2 text-sm text-slate-600">
-                <li>Calculation and analytics specifications</li>
+                <li>Calculation & analytics specs</li>
                 <li>Reporting definitions</li>
-                <li>Data validation and reconciliation logic</li>
-                <li>Training material</li>
+                <li>Validation & reconciliation logic</li>
+                <li>Training & interpretation guides</li>
               </ul>
             </div>
-          </article>
 
-          <article className="mt-6">
-            <h3 className="text-xl font-semibold">Reference Data & Market Data Platforms Lifecycle</h3>
-            <p className="mt-2 text-slate-700">Foundational platforms where errors propagate across downstream systems.</p>
-            <ol className="mt-3 list-decimal list-inside text-slate-700 space-y-2">
-              <li><strong>Data Domain Definition</strong> — define required data, structure, and consumers.</li>
-              <li><strong>Source Identification & Ingestion Strategy</strong> — define sources, ingestion, frequency, and fallbacks.</li>
-              <li><strong>Data Model & Quality Rules</strong> — establish golden source with validation rules.</li>
-              <li><strong>Integration & Distribution</strong> — distribute via APIs, feeds, or files with reliability concerns.</li>
-              <li><strong>Data Governance & Monitoring</strong> — ensure quality, lineage, and issue resolution.</li>
-              <li><strong>Expansion & Maintenance</strong> — support new instruments, markets, and regulations.</li>
-            </ol>
-
-            <div className="mt-4">
-              <div className="font-semibold">Key PM Deliverables</div>
+            <div className="p-4 bg-white rounded-lg shadow-sm">
+              <div className="font-semibold">Reference Data — Key PM Deliverables</div>
               <ul className="mt-2 text-sm text-slate-600">
-                <li>Data dictionaries and definitions</li>
-                <li>Quality rules and dashboards</li>
-                <li>Integration specifications</li>
+                <li>Data dictionaries & schemas</li>
+                <li>Quality rules & dashboards</li>
+                <li>Integration & distribution specs</li>
                 <li>Governance documentation</li>
               </ul>
             </div>
-          </article>
+          </div>
         </section>
 
         <section className="mb-10">
