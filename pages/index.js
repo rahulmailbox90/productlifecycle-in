@@ -11,20 +11,16 @@ export default function Home() {
     <Layout>
       {/* HERO Section */}
       <section className="pt-20 pb-16 bg-gradient-to-b from-white to-slate-50">
-        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
-          <div>
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl font-extrabold leading-tight">Understand Product Management Across the Full Product Lifecycle</h1>
             <p className="mt-4 text-lg text-slate-700">Practical product management guidance with a deep focus on Fintech products — from back-office systems to consumer-facing platforms.</p>
             <p className="mt-3 text-slate-600">Learn how real products are ideated, designed, built, launched, and scaled — and what product managers actually deliver at every stage.</p>
 
-            <div className="mt-6 flex flex-wrap gap-3 items-center">
+            <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3 items-center">
               <Link href="/learn/foundations"><a className="inline-block bg-slate-900 text-white px-6 py-3 rounded-lg shadow hover:shadow-lg transition">Start with Product Management Foundations</a></Link>
               <Link href="/learn"><a className="inline-block border border-slate-300 text-slate-900 px-5 py-3 rounded-lg hover:bg-slate-50 transition">Explore Fintech Product Lifecycles</a></Link>
             </div>
-          </div>
-
-          <div className={`mx-auto w-full max-w-md transform transition-all duration-700 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'}`}>
-            <img src="/images/hero-product-lifecycle.svg" alt="Product lifecycle illustration" className="w-full rounded-lg shadow-md" />
           </div>
         </div>
       </section>
