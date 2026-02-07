@@ -220,18 +220,16 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header ref={headerRef} className="bg-white shadow sticky top-0 z-40">
+      <header ref={headerRef} className="bg-gradient-to-r from-blue-600 to-purple-600 shadow sticky top-0 z-40">
   <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/">
-              <a className="flex items-center gap-3">
-                {/* Logo image: place the file at /public/images/productlifecycle-logo.png */}
-                <img
-                  src="/images/productlifecycle-logo.png"
-                  alt="productlifecycle.in"
-                  className="h-12 md:h-14 w-auto object-contain"
-                />
-                <span className="text-xl font-semibold">productlifecycle.in</span>
+              <a className="flex items-center gap-3 group">
+                {/* Modern logo icon */}
+                <div className="flex items-center justify-center h-12 md:h-14 w-12 md:w-14 bg-white rounded-lg shadow-md group-hover:shadow-lg transition-shadow transform group-hover:scale-110 transition-transform">
+                  <span className="text-2xl">📚</span>
+                </div>
+                <span className="text-2xl font-bold text-white group-hover:text-blue-100 transition-colors">HOME</span>
               </a>
             </Link>
           </div>
