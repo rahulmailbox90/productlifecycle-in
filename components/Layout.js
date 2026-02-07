@@ -196,6 +196,7 @@ export default function Layout({ children }) {
       items: [
         { href: '/learn', label: 'Overview' },
         { href: '/learn/foundations', label: 'Foundations' },
+        { href: '/learn/lifecycles', label: 'Lifecycles' },
         { href: '/learn/jargons', label: 'Jargons' },
         { href: '/learn/frameworks', label: 'Frameworks' },
         { href: '/learn/skills', label: 'Skills' },

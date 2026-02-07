@@ -59,13 +59,7 @@ export default function Jargons() {
     return g
   })()
 
-  // debug logs during SSR/build to help trace prerender issues
-  try{
-    // eslint-disable-next-line no-console
-    console.log('DEBUG: jargons grouped keys ->', Object.keys(grouped))
-    // eslint-disable-next-line no-console
-    console.log('DEBUG: order ->', order)
-  }catch(e){}
+
 
   const confused = [
     { a: 'Retention', b: 'Churn', diff: 'Retention is who stays; churn is who leaves — both are complementary metrics.' },

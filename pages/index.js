@@ -19,7 +19,7 @@ export default function Home() {
 
             <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3 items-center">
               <Link href="/learn/foundations"><a className="inline-block bg-slate-900 text-white px-6 py-3 rounded-lg shadow hover:shadow-lg transition">Start with Product Management Foundations</a></Link>
-              <Link href="/learn"><a className="inline-block border border-slate-300 text-slate-900 px-5 py-3 rounded-lg hover:bg-slate-50 transition">Explore Fintech Product Lifecycles</a></Link>
+              <Link href="/learn/lifecycles"><a className="inline-block border border-slate-300 text-slate-900 px-5 py-3 rounded-lg hover:bg-slate-50 transition">Explore Fintech Product Lifecycles</a></Link>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function Home() {
           </div>
 
           <div className="mt-6">
-            <Link href="/learn/">
+            <Link href="/learn/lifecycles">
               <a className="inline-block px-5 py-3 bg-slate-900 text-white rounded-lg">See Lifecycle & Deliverables for Each Product Type</a>
             </Link>
           </div>
@@ -285,7 +285,7 @@ export default function Home() {
             <ul className="mt-2 space-y-1">
               <li><Link href="/about"><a className="hover:underline">About the Site / Vision</a></Link></li>
               <li><Link href="/sitemap"><a className="hover:underline">Content Map / Sitemap</a></Link></li>
-              <li><Link href="/learn"><a className="hover:underline">Fintech Product Lifecycle</a></Link></li>
+              <li><Link href="/learn/lifecycles"><a className="hover:underline">Fintech Product Lifecycle</a></Link></li>
             </ul>
           </div>
 
