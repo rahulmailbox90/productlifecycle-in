@@ -532,20 +532,43 @@ export default function Jargons() {
 
       <div className="max-w-6xl mx-auto px-8">
         {/* Related Content */}
-        <section className="mt-12 mb-8 bg-green-50 p-8 rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Related Learning Content</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a href="/learn/foundations" className="p-4 bg-white rounded border hover:shadow transition cursor-pointer">
-              <div className="font-semibold text-green-600">PM Foundations</div>
-              <p className="text-sm text-slate-600 mt-1">Core concepts behind these terms</p>
+        <section className="mt-12 mb-8">
+          <h3 className="text-2xl font-semibold mb-8 text-slate-900">Continue Your Learning Journey</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="/learn/foundations" className="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border-2 border-blue-200 p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+              <div className="absolute top-0 right-0 text-4xl opacity-20 group-hover:opacity-30 transition-opacity">📘</div>
+              <div className="relative z-10">
+                <div className="text-3xl mb-3">📘</div>
+                <h4 className="text-lg font-bold text-blue-900">PM Foundations</h4>
+                <p className="text-sm text-blue-700 mt-2 font-medium">Understand the core concepts and principles behind product management.</p>
+                <div className="mt-4 flex items-center text-blue-600 font-semibold text-sm group-hover:text-blue-800">
+                  Explore → 
+                </div>
+              </div>
             </a>
-            <a href="/learn/lifecycles" className="p-4 bg-white rounded border hover:shadow transition cursor-pointer">
-              <div className="font-semibold text-green-600">Product Lifecycle</div>
-              <p className="text-sm text-slate-600 mt-1">Where these terms apply in practice</p>
+
+            <a href="/learn/lifecycles" className="group relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border-2 border-purple-200 p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+              <div className="absolute top-0 right-0 text-4xl opacity-20 group-hover:opacity-30 transition-opacity">🔁</div>
+              <div className="relative z-10">
+                <div className="text-3xl mb-3">🔁</div>
+                <h4 className="text-lg font-bold text-purple-900">Product Lifecycle</h4>
+                <p className="text-sm text-purple-700 mt-2 font-medium">See where these terms apply across different fintech product types.</p>
+                <div className="mt-4 flex items-center text-purple-600 font-semibold text-sm group-hover:text-purple-800">
+                  Explore →
+                </div>
+              </div>
             </a>
-            <a href="/frameworks" className="p-4 bg-white rounded border hover:shadow transition cursor-pointer">
-              <div className="font-semibold text-green-600">Frameworks</div>
-              <p className="text-sm text-slate-600 mt-1">Frameworks use many of these terms</p>
+
+            <a href="/frameworks" className="group relative overflow-hidden bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl border-2 border-orange-200 p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+              <div className="absolute top-0 right-0 text-4xl opacity-20 group-hover:opacity-30 transition-opacity">🛠️</div>
+              <div className="relative z-10">
+                <div className="text-3xl mb-3">🛠️</div>
+                <h4 className="text-lg font-bold text-orange-900">PM Frameworks</h4>
+                <p className="text-sm text-orange-700 mt-2 font-medium">Master decision-making frameworks that use many of these terms.</p>
+                <div className="mt-4 flex items-center text-orange-600 font-semibold text-sm group-hover:text-orange-800">
+                  Explore →
+                </div>
+              </div>
             </a>
           </div>
         </section>

@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/mq0C6uiPvLfO2tbZYDSAO/_buildManifest.js",
-    "static/mq0C6uiPvLfO2tbZYDSAO/_ssgManifest.js"
+    "static/jbZpRXQ-zwvdJrtbgeDTL/_buildManifest.js",
+    "static/jbZpRXQ-zwvdJrtbgeDTL/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -22,7 +22,7 @@
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
       "static/chunks/framework-2c16ac744b6cdea6.js",
       "static/chunks/main-48a2be0192cdda09.js",
-      "static/css/3f1c228000652bef.css",
+      "static/css/3752b39dfa51f254.css",
       "static/chunks/pages/_app-a963e5df70735b85.js"
     ],
     "/_error": [
@@ -264,7 +264,7 @@
       "static/chunks/framework-2c16ac744b6cdea6.js",
       "static/chunks/main-48a2be0192cdda09.js",
       "static/chunks/424-9cbb12c19be1a03b.js",
-      "static/chunks/pages/learn/jargons-f4545322be124012.js"
+      "static/chunks/pages/learn/jargons-7a5179d9b5307bcb.js"
     ],
     "/learn/lifecycles": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
