@@ -152,6 +152,24 @@ export default function Learn() {
                 <a className="text-blue-600 hover:text-blue-700 text-sm font-semibold">View Cases →</a>
               </Link>
             </div>
+
+            <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+              <div className="text-2xl mb-3">📥</div>
+              <h3 className="font-semibold mb-2">Downloads</h3>
+              <p className="text-sm text-slate-600 mb-4">Downloadable templates, guides, and handbooks</p>
+              <Link href="/downloads">
+                <a className="text-blue-600 hover:text-blue-700 text-sm font-semibold">Get Templates →</a>
+              </Link>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+              <div className="text-2xl mb-3">🗺️</div>
+              <h3 className="font-semibold mb-2">Site Map</h3>
+              <p className="text-sm text-slate-600 mb-4">Navigate all content and learning paths</p>
+              <Link href="/sitemap">
+                <a className="text-blue-600 hover:text-blue-700 text-sm font-semibold">View Map →</a>
+              </Link>
+            </div>
           </div>
         </section>
       </div>

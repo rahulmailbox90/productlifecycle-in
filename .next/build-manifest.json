@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/iBx0URJTmNTvJS8A_KLEq/_buildManifest.js",
-    "static/iBx0URJTmNTvJS8A_KLEq/_ssgManifest.js"
+    "static/n6BzNtAWGi9fiMN_mLpEJ/_buildManifest.js",
+    "static/n6BzNtAWGi9fiMN_mLpEJ/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -22,7 +22,7 @@
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
       "static/chunks/framework-2c16ac744b6cdea6.js",
       "static/chunks/main-48a2be0192cdda09.js",
-      "static/css/5a8d36edf0f22133.css",
+      "static/css/b31e4f4277525dbc.css",
       "static/chunks/pages/_app-a963e5df70735b85.js"
     ],
     "/_error": [
@@ -86,6 +86,14 @@
       "static/chunks/424-9cbb12c19be1a03b.js",
       "static/chunks/398-48c103e2e209ce2b.js",
       "static/chunks/pages/docs-282aba98a22da4b7.js"
+    ],
+    "/downloads": [
+      "static/chunks/webpack-b8f8d6679aaa5f42.js",
+      "static/chunks/framework-2c16ac744b6cdea6.js",
+      "static/chunks/main-48a2be0192cdda09.js",
+      "static/chunks/424-9cbb12c19be1a03b.js",
+      "static/chunks/398-48c103e2e209ce2b.js",
+      "static/chunks/pages/downloads-1a4f514225efa9f6.js"
     ],
     "/frameworks": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -219,7 +227,7 @@
       "static/chunks/main-48a2be0192cdda09.js",
       "static/chunks/424-9cbb12c19be1a03b.js",
       "static/chunks/398-48c103e2e209ce2b.js",
-      "static/chunks/pages/learn-0a1013d5c00ded01.js"
+      "static/chunks/pages/learn-c6ae1e244213d4b8.js"
     ],
     "/learn/development": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -235,7 +243,7 @@
       "static/chunks/main-48a2be0192cdda09.js",
       "static/chunks/424-9cbb12c19be1a03b.js",
       "static/chunks/398-48c103e2e209ce2b.js",
-      "static/chunks/pages/learn/foundations-cde042507f9cca88.js"
+      "static/chunks/pages/learn/foundations-a20618e3298fd957.js"
     ],
     "/learn/frameworks": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -255,7 +263,8 @@
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
       "static/chunks/framework-2c16ac744b6cdea6.js",
       "static/chunks/main-48a2be0192cdda09.js",
-      "static/chunks/pages/learn/jargons-77a1ad1005e3b413.js"
+      "static/chunks/424-9cbb12c19be1a03b.js",
+      "static/chunks/pages/learn/jargons-f4545322be124012.js"
     ],
     "/learn/lifecycles": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -263,7 +272,7 @@
       "static/chunks/main-48a2be0192cdda09.js",
       "static/chunks/424-9cbb12c19be1a03b.js",
       "static/chunks/398-48c103e2e209ce2b.js",
-      "static/chunks/pages/learn/lifecycles-b9634a478b546661.js"
+      "static/chunks/pages/learn/lifecycles-4b965e41d763b288.js"
     ],
     "/learn/skills": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -315,6 +324,14 @@
       "static/chunks/framework-2c16ac744b6cdea6.js",
       "static/chunks/main-48a2be0192cdda09.js",
       "static/chunks/pages/resources/tools-849534ab116c4fdb.js"
+    ],
+    "/sitemap": [
+      "static/chunks/webpack-b8f8d6679aaa5f42.js",
+      "static/chunks/framework-2c16ac744b6cdea6.js",
+      "static/chunks/main-48a2be0192cdda09.js",
+      "static/chunks/424-9cbb12c19be1a03b.js",
+      "static/chunks/398-48c103e2e209ce2b.js",
+      "static/chunks/pages/sitemap-a4994bfbe2f45bcb.js"
     ]
   },
   "ampFirstPages": []

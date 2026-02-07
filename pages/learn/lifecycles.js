@@ -1,9 +1,17 @@
 import Link from 'next/link'
 import Layout from '../../components/Layout'
+import Breadcrumb from '../../components/Breadcrumb'
+import LessonNavigation from '../../components/LessonNavigation'
 
 export default function Lifecycles() {
   return (
     <Layout>
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        <Breadcrumb items={[
+          { label: 'Learn', href: '/learn' },
+          { label: 'Lifecycles', href: null }
+        ]} />
+      </div>
       <div className="max-w-6xl mx-auto px-6 py-12">
         <header className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-extrabold">Fintech Product Lifecycle</h1>
@@ -237,6 +245,36 @@ export default function Lifecycles() {
           <h2 className="text-xl font-semibold">Final Note</h2>
           <p className="mt-3 text-slate-700">Effective fintech product managers do not force a single lifecycle onto every product. They adapt their approach based on product type, data complexity, regulatory exposure, and user needs. This page is designed to help you do exactly that.</p>
         </section>
+
+        {/* Related Content */}
+        <section className="mt-12 mb-8 bg-purple-50 p-8 rounded-lg">
+          <h3 className="text-xl font-semibold mb-4">Related Learning Content</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/learn/foundations">
+              <a className="p-4 bg-white rounded border hover:shadow transition">
+                <div className="font-semibold text-purple-600">PM Foundations</div>
+                <p className="text-sm text-slate-600 mt-1">Core concepts and PM mindset</p>
+              </a>
+            </Link>
+            <Link href="/learn/jargons">
+              <a className="p-4 bg-white rounded border hover:shadow transition">
+                <div className="font-semibold text-purple-600">Jargons & Terms</div>
+                <p className="text-sm text-slate-600 mt-1">Terminology used across lifecycle stages</p>
+              </a>
+            </Link>
+            <Link href="/frameworks">
+              <a className="p-4 bg-white rounded border hover:shadow transition">
+                <div className="font-semibold text-purple-600">Frameworks</div>
+                <p className="text-sm text-slate-600 mt-1">Decision-making at each stage</p>
+              </a>
+            </Link>
+          </div>
+        </section>
+
+        <LessonNavigation 
+          previousLesson={{ label: 'Product Foundations', href: '/learn/foundations' }}
+          nextLesson={{ label: 'Jargons & PM Terms', href: '/learn/jargons' }}
+        />
       </div>
     </Layout>
   )

@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Layout from '../../components/layout/Layout'
+import Breadcrumb from '../../components/Breadcrumb'
+import LessonNavigation from '../../components/LessonNavigation'
 import jargonsData from '../../data/jargons.json'
 
 const CATEGORIES = [
@@ -436,6 +438,12 @@ export default function Jargons() {
             
   return (
     <Layout>
+      <div className="max-w-6xl mx-auto px-8 py-8">
+        <Breadcrumb items={[
+          { label: 'Learn', href: '/learn' },
+          { label: 'Jargons & Terms', href: null }
+        ]} />
+      </div>
       <div className="max-w-6xl mx-auto px-8">
         <main className="py-12">
           {getRenderedSections()}
@@ -521,7 +529,34 @@ export default function Jargons() {
           </div>
         </div>
       </section>
+
+      <div className="max-w-6xl mx-auto px-8">
+        {/* Related Content */}
+        <section className="mt-12 mb-8 bg-green-50 p-8 rounded-lg">
+          <h3 className="text-xl font-semibold mb-4">Related Learning Content</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/learn/foundations" className="p-4 bg-white rounded border hover:shadow transition cursor-pointer">
+              <div className="font-semibold text-green-600">PM Foundations</div>
+              <p className="text-sm text-slate-600 mt-1">Core concepts behind these terms</p>
+            </a>
+            <a href="/learn/lifecycles" className="p-4 bg-white rounded border hover:shadow transition cursor-pointer">
+              <div className="font-semibold text-green-600">Product Lifecycle</div>
+              <p className="text-sm text-slate-600 mt-1">Where these terms apply in practice</p>
+            </a>
+            <a href="/frameworks" className="p-4 bg-white rounded border hover:shadow transition cursor-pointer">
+              <div className="font-semibold text-green-600">Frameworks</div>
+              <p className="text-sm text-slate-600 mt-1">Frameworks use many of these terms</p>
+            </a>
+          </div>
+        </section>
+
+        <LessonNavigation 
+          previousLesson={{ label: 'Product Lifecycle', href: '/learn/lifecycles' }}
+          nextLesson={{ label: 'Frameworks & Tools', href: '/frameworks' }}
+        />
+      </div>
     </Layout>
   )
 }
+
  

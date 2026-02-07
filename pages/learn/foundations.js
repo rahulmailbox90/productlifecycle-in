@@ -1,9 +1,17 @@
 import Layout from '../../components/Layout'
 import Link from 'next/link'
+import Breadcrumb from '../../components/Breadcrumb'
+import LessonNavigation from '../../components/LessonNavigation'
 
 export default function Foundations() {
   return (
     <Layout>
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        <Breadcrumb items={[
+          { label: 'Learn', href: '/learn' },
+          { label: 'Foundations', href: null }
+        ]} />
+      </div>
       {/* HERO / INTRO BLOCK */}
       <section className="w-full bg-gradient-to-r from-white via-slate-50 to-white p-8 rounded-lg shadow-sm">
         <div className="container mx-auto flex flex-col md:flex-row items-center gap-6">
@@ -421,15 +429,37 @@ export default function Foundations() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="container mx-auto mt-12 text-center py-8 bg-gradient-to-r from-white to-blue-50 rounded-lg">
-        <h3 className="text-2xl font-semibold">You now understand how Product Management works at its core — from evolution to collaboration.</h3>
-        <p className="mt-3 text-slate-700">Ready to move ahead and learn the language of Product Managers?</p>
-        <div className="mt-6 flex justify-center gap-3">
-          <Link href="/learn/jargons"><a className="px-6 py-3 bg-blue-600 text-white rounded">Next → Jargons & PM Terms</a></Link>
-          <Link href="/learn"><a className="px-6 py-3 border rounded text-slate-700">Back to Learn Overview</a></Link>
-        </div>
-      </section>
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Related Content */}
+        <section className="mt-12 mb-8 bg-blue-50 p-8 rounded-lg">
+          <h3 className="text-xl font-semibold mb-4">Related Learning Content</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/learn/lifecycles">
+              <a className="p-4 bg-white rounded border hover:shadow transition">
+                <div className="font-semibold text-blue-600">Product Lifecycle</div>
+                <p className="text-sm text-slate-600 mt-1">See how PM responsibilities evolve across each stage</p>
+              </a>
+            </Link>
+            <Link href="/learn/jargons">
+              <a className="p-4 bg-white rounded border hover:shadow transition">
+                <div className="font-semibold text-blue-600">Jargons & Terms</div>
+                <p className="text-sm text-slate-600 mt-1">Learn the language of product management</p>
+              </a>
+            </Link>
+            <Link href="/frameworks">
+              <a className="p-4 bg-white rounded border hover:shadow transition">
+                <div className="font-semibold text-blue-600">Frameworks</div>
+                <p className="text-sm text-slate-600 mt-1">Decision-making and prioritization techniques</p>
+              </a>
+            </Link>
+          </div>
+        </section>
+
+        <LessonNavigation 
+          previousLesson={null} 
+          nextLesson={{ label: 'Product Lifecycle & Stages', href: '/learn/lifecycles' }}
+        />
+      </div>
     </Layout>
   )
 }
