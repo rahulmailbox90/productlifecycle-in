@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/PwbS5uzDrlY1d0tDfGP9B/_buildManifest.js",
-    "static/PwbS5uzDrlY1d0tDfGP9B/_ssgManifest.js"
+    "static/mq0C6uiPvLfO2tbZYDSAO/_buildManifest.js",
+    "static/mq0C6uiPvLfO2tbZYDSAO/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -22,7 +22,7 @@
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
       "static/chunks/framework-2c16ac744b6cdea6.js",
       "static/chunks/main-48a2be0192cdda09.js",
-      "static/css/57f90b6da906a033.css",
+      "static/css/3f1c228000652bef.css",
       "static/chunks/pages/_app-a963e5df70735b85.js"
     ],
     "/_error": [
@@ -272,7 +272,7 @@
       "static/chunks/main-48a2be0192cdda09.js",
       "static/chunks/424-9cbb12c19be1a03b.js",
       "static/chunks/398-48c103e2e209ce2b.js",
-      "static/chunks/pages/learn/lifecycles-4b965e41d763b288.js"
+      "static/chunks/pages/learn/lifecycles-658f8896bcf1628f.js"
     ],
     "/learn/skills": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
